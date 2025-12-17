@@ -76,13 +76,21 @@ const Footer = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block mb-6"
+              className="inline-flex items-center gap-3 mb-6"
             >
               <img
                 src="/images/Nihkarsh-Technology-1536x768.webp"
                 alt="Nihkarsh Technology"
                 className="h-12 object-contain"
               />
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-white tracking-tight leading-tight">
+                  NIHKARSH TECHNOLOGY
+                </span>
+                <span className="text-[10px] text-gray-400 tracking-widest uppercase">
+                  Private Limited
+                </span>
+              </div>
             </motion.a>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

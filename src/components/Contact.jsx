@@ -196,8 +196,11 @@ const Contact = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass border border-primary-500/20 mb-8"
           >
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.7, 1, 0.7],
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <Sparkles className="w-4 h-4 text-primary-400" />
             </motion.div>
@@ -430,11 +433,16 @@ const Contact = () => {
               <div className="relative mb-8">
                 <div className="flex items-center gap-3 mb-3">
                   <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/30"
                   >
-                    <MessageSquare className="w-6 h-6 text-white" />
+                    <motion.div
+                      animate={{ y: [0, -2, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <MessageSquare className="w-6 h-6 text-white" />
+                    </motion.div>
                   </motion.div>
                   <div>
                     <h3 className="text-2xl font-bold text-white">Send us a Message</h3>

@@ -70,11 +70,11 @@ const Navbar = () => {
               alt="Nihkarsh Technology"
               className="h-10 md:h-12 object-contain"
             />
-            <div className="hidden sm:flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-white tracking-tight leading-tight">
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-lg md:text-xl font-bold text-white tracking-tight leading-tight">
                 NIHKARSH TECHNOLOGY
               </span>
-              <span className="text-[10px] md:text-xs text-gray-400 tracking-widest uppercase">
+              <span className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 tracking-widest uppercase">
                 Private Limited
               </span>
             </div>
