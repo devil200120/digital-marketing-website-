@@ -81,7 +81,7 @@ const Footer = () => {
               <img
                 src="/images/Nihkarsh-Technology-1536x768.webp"
                 alt="Nihkarsh Technology"
-                className="h-16 sm:h-20 object-contain -mr-3 sm:-mr-4"
+                className="h-16 sm:h-20 object-contain -mr-8 sm:-mr-10"
               />
               <div className="flex flex-col">
                 <span className="text-lg font-bold text-white tracking-tight leading-tight">

@@ -68,7 +68,7 @@ const Navbar = () => {
             <img
               src="/images/Nihkarsh-Technology-1536x768.webp"
               alt="Nihkarsh Technology"
-              className="h-14 sm:h-16 md:h-20 object-contain -mr-2 sm:-mr-3 md:-mr-4"
+              className="h-14 sm:h-16 md:h-20 object-contain -mr-6 sm:-mr-8 md:-mr-10"
             />
             <div className="flex flex-col">
               <span className="text-sm sm:text-lg md:text-xl font-bold text-white tracking-tight leading-tight">
