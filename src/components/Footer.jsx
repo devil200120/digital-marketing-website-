@@ -76,12 +76,12 @@ const Footer = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-3 mb-6"
+              className="inline-flex items-center mb-6"
             >
               <img
                 src="/images/Nihkarsh-Technology-1536x768.webp"
                 alt="Nihkarsh Technology"
-                className="h-12 object-contain"
+                className="h-16 sm:h-20 object-contain -mr-3 sm:-mr-4"
               />
               <div className="flex flex-col">
                 <span className="text-lg font-bold text-white tracking-tight leading-tight">

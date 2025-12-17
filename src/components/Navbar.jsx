@@ -61,14 +61,14 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="relative z-10 flex items-center gap-3"
+            className="relative z-10 flex items-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <img
               src="/images/Nihkarsh-Technology-1536x768.webp"
               alt="Nihkarsh Technology"
-              className="h-10 md:h-12 object-contain"
+              className="h-14 sm:h-16 md:h-20 object-contain -mr-2 sm:-mr-3 md:-mr-4"
             />
             <div className="flex flex-col">
               <span className="text-sm sm:text-lg md:text-xl font-bold text-white tracking-tight leading-tight">
