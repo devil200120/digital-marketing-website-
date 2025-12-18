@@ -37,17 +37,17 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch(`${config.apiUrl}/testimonials`);
+        const response = await fetch(`${config.apiUrl}/testimonials/public`);
         if (response.ok) {
           const data = await response.json();
-          if (data && data.length > 0) {
+          if (data && data.testimonials && data.testimonials.length > 0) {
             // Map API data to match expected format
-            const mappedTestimonials = data.map(t => ({
+            const mappedTestimonials = data.testimonials.map(t => ({
               name: t.name,
               role: t.role ? `${t.role}${t.company ? `, ${t.company}` : ''}` : t.company || '',
               image: t.image || '/images/topimg-home1.webp',
               rating: t.rating || 5,
-              text: t.content || t.text,
+              text: t.text,
             }));
             setTestimonials(mappedTestimonials);
           }

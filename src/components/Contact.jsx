@@ -117,7 +117,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${config.apiUrl}/contact`, {
+      const response = await fetch(`${config.apiUrl}/contact/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ export default function Testimonials() {
     name: "",
     role: "",
     company: "",
-    content: "",
+    text: "",
     rating: 5,
     image: "",
   });
@@ -44,7 +44,7 @@ export default function Testimonials() {
       name: "",
       role: "",
       company: "",
-      content: "",
+      text: "",
       rating: 5,
       image: "",
     });
@@ -53,7 +53,7 @@ export default function Testimonials() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.content) return;
+    if (!form.name || !form.text) return;
 
     try {
       if (editingId) {
@@ -74,7 +74,7 @@ export default function Testimonials() {
       name: testimonial.name,
       role: testimonial.role || "",
       company: testimonial.company || "",
-      content: testimonial.content,
+      text: testimonial.text || "",
       rating: testimonial.rating || 5,
       image: testimonial.image || "",
     });
@@ -172,8 +172,8 @@ export default function Testimonials() {
             <textarea
               rows="4"
               placeholder="What the customer said about your services..."
-              value={form.content}
-              onChange={(e) => setForm({ ...form, content: e.target.value })}
+              value={form.text}
+              onChange={(e) => setForm({ ...form, text: e.target.value })}
               className="w-full rounded-xl bg-slate-800/50 border border-slate-700 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"
               required
             />
@@ -292,7 +292,7 @@ export default function Testimonials() {
 
               {/* Content */}
               <p className="text-slate-300 text-sm flex-grow italic leading-relaxed">
-                "{testimonial.content}"
+                "{testimonial.text}"
               </p>
 
               {/* Actions */}
