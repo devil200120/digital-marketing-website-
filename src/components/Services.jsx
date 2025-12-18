@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -12,11 +12,23 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import config from "../config";
 
-const services = [
+// Icon mapping for dynamic services
+const iconMap = {
+  Search: Search,
+  Share2: Share2,
+  MousePointer: MousePointer,
+  Palette: Palette,
+  LineChart: LineChart,
+  Code: Code,
+};
+
+// Default services data
+const defaultServices = [
   {
     number: "01",
-    icon: Search,
+    icon: "Search",
     title: "SEO Optimization",
     description:
       "Boost your search rankings with our comprehensive SEO strategies. We use ethical, white-hat techniques to improve your online visibility.",
@@ -37,7 +49,7 @@ const services = [
   },
   {
     number: "02",
-    icon: Share2,
+    icon: "Share2",
     title: "Social Media Marketing",
     description:
       "Build your brand presence across all social platforms. Engage your audience and drive meaningful interactions that convert.",
@@ -58,7 +70,7 @@ const services = [
   },
   {
     number: "03",
-    icon: MousePointer,
+    icon: "MousePointer",
     title: "Google Ads (PPC)",
     description:
       "Maximize ROI with targeted PPC campaigns. As a certified Google Partner, we deliver results-driven advertising strategies.",
@@ -79,7 +91,7 @@ const services = [
   },
   {
     number: "04",
-    icon: Palette,
+    icon: "Palette",
     title: "Graphic Designing",
     description:
       "Create stunning visuals that capture attention. Our design team brings your brand vision to life with creative excellence.",
@@ -100,7 +112,7 @@ const services = [
   },
   {
     number: "05",
-    icon: LineChart,
+    icon: "LineChart",
     title: "Performance Marketing",
     description:
       "Data-driven marketing strategies that deliver measurable results. Track, analyze, and optimize for maximum performance.",
@@ -121,7 +133,7 @@ const services = [
   },
   {
     number: "06",
-    icon: Code,
+    icon: "Code",
     title: "Web Development",
     description:
       "Custom websites that convert visitors into customers. Responsive, fast, and optimized for search engines.",
@@ -144,6 +156,9 @@ const services = [
 
 const ServiceModal = ({ service, isOpen, onClose }) => {
   if (!service) return null;
+  
+  // Get icon component from iconMap or default to Search
+  const IconComponent = iconMap[service.icon] || Search;
 
   return (
     <AnimatePresence>
@@ -179,16 +194,18 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/50 to-transparent" />
-              
+
               {/* Service number & icon */}
               <div className="absolute bottom-6 left-6 flex items-center gap-4">
                 <div
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg`}
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} flex items-center justify-center shadow-lg`}
                 >
-                  <service.icon className="w-8 h-8 text-white" />
+                  <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <span className={`text-sm font-medium bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
+                  <span
+                    className={`text-sm font-medium bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} bg-clip-text text-transparent`}
+                  >
                     Service {service.number}
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold text-white">
@@ -208,7 +225,9 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
               {/* Features */}
               <div className="mb-8">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className={`w-8 h-1 rounded-full bg-gradient-to-r ${service.color}`} />
+                  <span
+                    className={`w-8 h-1 rounded-full bg-gradient-to-r ${service.color}`}
+                  />
                   What We Offer
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -220,7 +239,22 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                       transition={{ delay: index * 0.05 }}
                       className="flex items-center gap-3 p-3 rounded-xl bg-dark-700/50 border border-dark-600/50"
                     >
-                      <CheckCircle className={`w-5 h-5 flex-shrink-0 text-transparent bg-gradient-to-r ${service.color} bg-clip-text`} style={{ color: service.color.includes('blue') ? '#3b82f6' : service.color.includes('pink') ? '#ec4899' : service.color.includes('primary') ? '#ed7410' : service.color.includes('purple') ? '#8b5cf6' : service.color.includes('green') ? '#22c55e' : '#6366f1' }} />
+                      <CheckCircle
+                        className={`w-5 h-5 flex-shrink-0 text-transparent bg-gradient-to-r ${service.color} bg-clip-text`}
+                        style={{
+                          color: service.color.includes("blue")
+                            ? "#3b82f6"
+                            : service.color.includes("pink")
+                            ? "#ec4899"
+                            : service.color.includes("primary")
+                            ? "#ed7410"
+                            : service.color.includes("purple")
+                            ? "#8b5cf6"
+                            : service.color.includes("green")
+                            ? "#22c55e"
+                            : "#6366f1",
+                        }}
+                      />
                       <span className="text-gray-300 text-sm">{feature}</span>
                     </motion.div>
                   ))}
@@ -260,6 +294,9 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
 const ServiceCard = ({ service, index, onClick }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, margin: "-100px" });
+  
+  // Get icon component from iconMap or default to Search
+  const IconComponent = iconMap[service.icon] || Search;
 
   return (
     <motion.div
@@ -275,7 +312,7 @@ const ServiceCard = ({ service, index, onClick }) => {
           {/* Service number */}
           <div className="absolute top-6 right-6 z-20">
             <span
-              className={`text-6xl font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent opacity-20 group-hover:opacity-40 transition-opacity`}
+              className={`text-6xl font-bold bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} bg-clip-text text-transparent opacity-20 group-hover:opacity-40 transition-opacity`}
             >
               {service.number}
             </span>
@@ -292,9 +329,9 @@ const ServiceCard = ({ service, index, onClick }) => {
 
             {/* Icon */}
             <div
-              className={`absolute bottom-4 left-6 w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}
+              className={`absolute bottom-4 left-6 w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}
             >
-              <service.icon className="w-7 h-7 text-white" />
+              <IconComponent className="w-7 h-7 text-white" />
             </div>
           </div>
 
@@ -308,9 +345,7 @@ const ServiceCard = ({ service, index, onClick }) => {
             </p>
 
             {/* Learn more link */}
-            <div
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary-400 group/link"
-            >
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary-400 group/link">
               View Details
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </div>
@@ -331,6 +366,34 @@ const Services = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [services, setServices] = useState(defaultServices);
+
+  // Fetch services from API
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/services`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Map API data to include default colors and numbers
+            const mappedServices = data.map((service, index) => ({
+              ...service,
+              number: String(index + 1).padStart(2, '0'),
+              color: service.color || defaultServices[index % defaultServices.length]?.color || 'from-primary-500 to-orange-500',
+              icon: service.icon || defaultServices[index % defaultServices.length]?.icon || 'Search',
+              features: service.features || defaultServices[index % defaultServices.length]?.features || [],
+              fullDescription: service.fullDescription || service.description,
+            }));
+            setServices(mappedServices);
+          }
+        }
+      } catch (error) {
+        console.log('Using default services data');
+      }
+    };
+    fetchServices();
+  }, []);
 
   const handleCardClick = (service) => {
     setSelectedService(service);

@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import config from "../config";
 
-const testimonials = [
+const defaultTestimonials = [
   {
     name: "Rajeev Sharma",
     role: "CEO, Digital Tech Solutions",
@@ -30,6 +31,33 @@ const Testimonials = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState(defaultTestimonials);
+
+  // Fetch testimonials from API
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/testimonials`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Map API data to match expected format
+            const mappedTestimonials = data.map(t => ({
+              name: t.name,
+              role: t.role ? `${t.role}${t.company ? `, ${t.company}` : ''}` : t.company || '',
+              image: t.image || '/images/topimg-home1.webp',
+              rating: t.rating || 5,
+              text: t.content || t.text,
+            }));
+            setTestimonials(mappedTestimonials);
+          }
+        }
+      } catch (error) {
+        console.log('Using default testimonials data');
+      }
+    };
+    fetchTestimonials();
+  }, []);
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -14,7 +15,21 @@ import LoadingScreen from "./components/LoadingScreen";
 import CursorGlow from "./components/CursorGlow";
 import FloatingContact from "./components/FloatingContact";
 
-function App() {
+// Admin imports
+import Login from "./admin/auth/Login";
+import ProtectedRoute from "./admin/auth/ProtectedRoute";
+import Layout from "./admin/components/Layout";
+import Dashboard from "./admin/pages/Dashboard";
+import AdminHero from "./admin/pages/Hero";
+import AdminAbout from "./admin/pages/About";
+import AdminServices from "./admin/pages/Services";
+import AdminStats from "./admin/pages/Stats";
+import AdminTestimonials from "./admin/pages/Testimonials";
+import AdminBlog from "./admin/pages/Blog";
+import AdminContacts from "./admin/pages/Contacts";
+
+// Main Website Component
+function MainWebsite() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,6 +62,93 @@ function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+// Admin Layout Wrapper
+function AdminLayout({ children }) {
+  return (
+    <ProtectedRoute>
+      <Layout>{children}</Layout>
+    </ProtectedRoute>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Main Website */}
+        <Route path="/" element={<MainWebsite />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/hero"
+          element={
+            <AdminLayout>
+              <AdminHero />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/about"
+          element={
+            <AdminLayout>
+              <AdminAbout />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/services"
+          element={
+            <AdminLayout>
+              <AdminServices />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/stats"
+          element={
+            <AdminLayout>
+              <AdminStats />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/testimonials"
+          element={
+            <AdminLayout>
+              <AdminTestimonials />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/blog"
+          element={
+            <AdminLayout>
+              <AdminBlog />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/contacts"
+          element={
+            <AdminLayout>
+              <AdminContacts />
+            </AdminLayout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

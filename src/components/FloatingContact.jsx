@@ -59,9 +59,9 @@ const FloatingContact = () => {
 
   // Menu item variants with stagger
   const menuItemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50, 
+    hidden: {
+      opacity: 0,
+      y: 50,
       scale: 0.3,
     },
     visible: (delay) => ({
@@ -168,7 +168,7 @@ const FloatingContact = () => {
                   target={option.id === "whatsapp" ? "_blank" : "_self"}
                   rel="noopener noreferrer"
                   className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${option.gradient} text-white flex items-center justify-center shadow-lg ${option.shadow} ${option.hoverShadow} transition-shadow duration-300`}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.15,
                     boxShadow: "0 0 30px rgba(34, 197, 94, 0.6)",
                   }}
@@ -179,7 +179,7 @@ const FloatingContact = () => {
                     className={`absolute inset-0 rounded-full bg-gradient-to-br ${option.gradient} blur-lg opacity-0`}
                     whileHover={{ opacity: 0.5 }}
                   />
-                  
+
                   {/* Icon */}
                   <motion.div
                     className="relative z-10"
@@ -231,9 +231,9 @@ const FloatingContact = () => {
           }`}
           variants={mainButtonVariants}
           animate={isOpen ? "open" : "closed"}
-          whileHover={{ 
+          whileHover={{
             scale: 1.1,
-            boxShadow: isOpen 
+            boxShadow: isOpen
               ? "0 0 40px rgba(168, 85, 247, 0.7)"
               : "0 0 40px rgba(236, 72, 153, 0.7)",
           }}
@@ -278,11 +278,11 @@ const FloatingContact = () => {
           {!isOpen && (
             <motion.div
               initial={{ opacity: 0, x: 10 }}
-              animate={{ 
+              animate={{
                 opacity: [0, 1, 1, 0],
                 x: [10, 0, 0, 10],
               }}
-              transition={{ 
+              transition={{
                 duration: 3,
                 repeat: Infinity,
                 repeatDelay: 2,

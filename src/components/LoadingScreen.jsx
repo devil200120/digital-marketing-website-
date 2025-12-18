@@ -31,7 +31,9 @@ const LoadingScreen = () => {
 
   // Update loading text based on progress
   useEffect(() => {
-    const message = [...loadingMessages].reverse().find((m) => progress >= m.threshold);
+    const message = [...loadingMessages]
+      .reverse()
+      .find((m) => progress >= m.threshold);
     if (message) setLoadingText(message.text);
   }, [progress]);
 
@@ -94,7 +96,7 @@ const LoadingScreen = () => {
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
             ctx.strokeStyle = particle.color;
-            ctx.globalAlpha = (120 - distance) / 120 * 0.15;
+            ctx.globalAlpha = ((120 - distance) / 120) * 0.15;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -145,17 +147,15 @@ const LoadingScreen = () => {
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         {/* Particle Canvas */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 z-0"
-        />
+        <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
         {/* Animated gradient background */}
         <div className="absolute inset-0 z-0">
           <motion.div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
             style={{
-              background: "radial-gradient(circle, rgba(237,116,16,0.15) 0%, transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(237,116,16,0.15) 0%, transparent 70%)",
             }}
             animate={{
               scale: [1, 1.2, 1],
@@ -170,7 +170,8 @@ const LoadingScreen = () => {
           <motion.div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
             style={{
-              background: "radial-gradient(circle, rgba(12,165,235,0.1) 0%, transparent 70%)",
+              background:
+                "radial-gradient(circle, rgba(12,165,235,0.1) 0%, transparent 70%)",
             }}
             animate={{
               scale: [1.2, 1, 1.2],
@@ -209,9 +210,10 @@ const LoadingScreen = () => {
             key={i}
             className="absolute w-2 h-2 md:w-3 md:h-3 rounded-full"
             style={{
-              background: i % 2 === 0 
-                ? "linear-gradient(135deg, #ed7410, #f59e0b)" 
-                : "linear-gradient(135deg, #0ca5eb, #06b6d4)",
+              background:
+                i % 2 === 0
+                  ? "linear-gradient(135deg, #ed7410, #f59e0b)"
+                  : "linear-gradient(135deg, #0ca5eb, #06b6d4)",
               left: `${20 + i * 12}%`,
               top: `${30 + (i % 3) * 20}%`,
             }}
@@ -329,7 +331,13 @@ const LoadingScreen = () => {
                 style={{ filter: "drop-shadow(0 0 10px rgba(237,116,16,0.5))" }}
               />
               <defs>
-                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient
+                  id="progressGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
+                >
                   <stop offset="0%" stopColor="#ed7410" />
                   <stop offset="50%" stopColor="#f59e0b" />
                   <stop offset="100%" stopColor="#0ca5eb" />
@@ -363,7 +371,7 @@ const LoadingScreen = () => {
               }}
               transition={{ duration: 0.1 }}
             >
-              <div 
+              <div
                 className="w-full h-full rounded-full"
                 style={{
                   transform: `translate(-50%, -50%) translateY(-${32 * 1.4}px)`,
@@ -388,9 +396,7 @@ const LoadingScreen = () => {
             >
               {loadingText}
             </motion.span>
-            <motion.span
-              className="flex gap-1"
-            >
+            <motion.span className="flex gap-1">
               {[0, 1, 2].map((i) => (
                 <motion.span
                   key={i}
@@ -449,7 +455,13 @@ const LoadingScreen = () => {
               }}
             />
             <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="waveGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="rgba(237,116,16,0.1)" />
                 <stop offset="50%" stopColor="rgba(12,165,235,0.1)" />
                 <stop offset="100%" stopColor="rgba(237,116,16,0.1)" />

@@ -1,22 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { CheckCircle, Award, Users, Globe2, Lightbulb } from "lucide-react";
+import config from "../config";
 
-const highlights = [
-  { icon: Award, text: "3+ Years Experience" },
-  { icon: Users, text: "50+ Brands Created" },
-  { icon: Globe2, text: "Global Presence" },
-  { icon: Lightbulb, text: "Innovative Solutions" },
-];
-
-const features = [
-  "Strategic Brand Development",
-  "Data-Driven Marketing Campaigns",
-  "Custom Web Solutions",
-  "Social Media Management",
-  "SEO & Content Marketing",
-  "Performance Analytics",
-];
+// Icon mapping for dynamic highlights
+const iconMap = {
+  Award: Award,
+  Users: Users,
+  Globe2: Globe2,
+  Lightbulb: Lightbulb,
+};
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -28,6 +21,68 @@ const About = () => {
   });
 
   const imageY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+  // Dynamic data state
+  const [aboutData, setAboutData] = useState({
+    badge: "About Us",
+    heading: {
+      line1: "Your Worldwide Partner",
+      line2: "in Digital Success"
+    },
+    description: "Based in the thriving metropolis of Noida (Delhi NCR), India, NIHKARSH TECHNOLOGY stands out as a shining example of digital marketing excellence, serving both India and international markets. From dynamic branding to creative website building and laser-focused marketing strategies, we specialize in comprehensive digital marketing services.",
+    image1: "/images/about-image-1.webp",
+    image2: "/images/about-image2-1.webp",
+    experienceYears: "3+",
+    highlights: [
+      { icon: "Award", text: "3+ Years Experience" },
+      { icon: "Users", text: "50+ Brands Created" },
+      { icon: "Globe2", text: "Global Presence" },
+      { icon: "Lightbulb", text: "Innovative Solutions" },
+    ],
+    features: [
+      "Strategic Brand Development",
+      "Data-Driven Marketing Campaigns",
+      "Custom Web Solutions",
+      "Social Media Management",
+      "SEO & Content Marketing",
+      "Performance Analytics",
+    ],
+    button: {
+      text: "Learn More About Us",
+      link: "#contact"
+    }
+  });
+
+  // Fetch about data from API
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/about/public`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            setAboutData(prev => ({
+              ...prev,
+              ...data,
+              heading: data.heading || prev.heading,
+              highlights: data.highlights?.length ? data.highlights : prev.highlights,
+              features: data.features?.length ? data.features : prev.features,
+              button: data.button || prev.button,
+            }));
+          }
+        }
+      } catch (error) {
+        console.log('Using default about data');
+      }
+    };
+    fetchAboutData();
+  }, []);
+
+  // Map highlights with icons
+  const highlights = aboutData.highlights.map(h => ({
+    icon: iconMap[h.icon] || Award,
+    text: h.text
+  }));
 
   return (
     <section id="about" className="relative py-24 md:py-32 overflow-hidden">
@@ -56,7 +111,7 @@ const About = () => {
                 className="relative z-10 rounded-3xl overflow-hidden shadow-2xl"
               >
                 <img
-                  src="/images/about-image-1.webp"
+                  src={aboutData.image1 || "/images/about-image-1.webp"}
                   alt="About Nihkarsh Technology"
                   className="w-full h-auto object-cover"
                 />
@@ -71,7 +126,7 @@ const About = () => {
                 className="absolute -bottom-10 -right-10 w-64 h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-dark-900 z-20"
               >
                 <img
-                  src="/images/about-image2-1.webp"
+                  src={aboutData.image2 || "/images/about-image2-1.webp"}
                   alt="Team"
                   className="w-full h-full object-cover"
                 />
@@ -85,7 +140,7 @@ const About = () => {
                 className="absolute top-6 -left-6 z-30"
               >
                 <div className="glass px-6 py-4 rounded-2xl shadow-xl">
-                  <p className="text-4xl font-bold gradient-text">3+</p>
+                  <p className="text-4xl font-bold gradient-text">{aboutData.experienceYears || "3+"}</p>
                   <p className="text-sm text-gray-400">Years Experience</p>
                 </div>
               </motion.div>
@@ -108,7 +163,7 @@ const About = () => {
             >
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-                About Us
+                {aboutData.badge || "About Us"}
               </span>
             </motion.div>
 
@@ -118,9 +173,9 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
             >
-              <span className="text-white">Your Worldwide Partner</span>
+              <span className="text-white">{aboutData.heading?.line1 || "Your Worldwide Partner"}</span>
               <br />
-              <span className="gradient-text">in Digital Success</span>
+              <span className="gradient-text">{aboutData.heading?.line2 || "in Digital Success"}</span>
             </motion.h2>
 
             <motion.p
@@ -129,12 +184,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-gray-400 text-lg leading-relaxed mb-8"
             >
-              Based in the thriving metropolis of Noida (Delhi NCR), India,
-              NIHKARSH TECHNOLOGY stands out as a shining example of digital
-              marketing excellence, serving both India and international
-              markets. From dynamic branding to creative website building and
-              laser-focused marketing strategies, we specialize in comprehensive
-              digital marketing services.
+              {aboutData.description}
             </motion.p>
 
             {/* Highlights */}
@@ -169,7 +219,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="grid grid-cols-2 gap-3 mb-8"
             >
-              {features.map((feature, index) => (
+              {aboutData.features.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -190,12 +240,12 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               <motion.a
-                href="#contact"
+                href={aboutData.button?.link || "#contact"}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-full shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 transition-all duration-300"
               >
-                Learn More About Us
+                {aboutData.button?.text || "Learn More About Us"}
               </motion.a>
             </motion.div>
           </div>

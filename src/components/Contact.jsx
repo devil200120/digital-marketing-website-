@@ -16,6 +16,7 @@ import {
   Shield,
   HeadphonesIcon,
 } from "lucide-react";
+import config from "../config";
 
 const contactInfo = [
   {
@@ -77,7 +78,7 @@ const Contact = () => {
   const formRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const isFormInView = useInView(formRef, { once: true, margin: "-50px" });
-  
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -115,23 +116,43 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset after showing success
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
+    try {
+      const response = await fetch(`${config.apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          service: formState.service,
+          message: formState.message,
+        }),
       });
-    }, 4000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset after showing success
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormState({
+            name: "",
+            email: "",
+            phone: "",
+            service: "",
+            message: "",
+          });
+        }, 4000);
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Floating particles
@@ -149,12 +170,18 @@ const Contact = () => {
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
-        
+
         {/* Animated mesh gradient */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: "2s" }} />
+          <div
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full blur-[120px] animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] animate-pulse"
+            style={{ animationDelay: "2s" }}
+          />
         </div>
 
         {/* Grid pattern */}
@@ -196,7 +223,7 @@ const Contact = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass border border-primary-500/20 mb-8"
           >
             <motion.div
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.7, 1, 0.7],
               }}
@@ -234,7 +261,13 @@ const Contact = () => {
                   strokeLinecap="round"
                 />
                 <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient
+                    id="gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
                     <stop offset="0%" stopColor="#ed7410" />
                     <stop offset="100%" stopColor="#0ca5eb" />
                   </linearGradient>
@@ -249,8 +282,8 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            Ready to transform your digital presence? Our team of experts is here
-            to help you achieve your goals. Let's start the conversation!
+            Ready to transform your digital presence? Our team of experts is
+            here to help you achieve your goals. Let's start the conversation!
           </motion.p>
 
           {/* Feature badges */}
@@ -270,7 +303,9 @@ const Contact = () => {
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-dark-800/80 border border-dark-600/50 backdrop-blur-sm"
               >
                 <feature.icon className="w-4 h-4 text-primary-400" />
-                <span className="text-sm font-medium text-gray-300">{feature.text}</span>
+                <span className="text-sm font-medium text-gray-300">
+                  {feature.text}
+                </span>
               </motion.div>
             ))}
           </motion.div>
@@ -297,8 +332,10 @@ const Contact = () => {
                   className="group relative"
                 >
                   {/* Glow effect */}
-                  <div className={`absolute -inset-0.5 bg-gradient-to-r ${info.gradient} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
-                  
+                  <div
+                    className={`absolute -inset-0.5 bg-gradient-to-r ${info.gradient} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                  />
+
                   <div className="relative p-6 rounded-2xl bg-dark-800/80 backdrop-blur-sm border border-dark-600/50 group-hover:border-transparent transition-all duration-500 h-full">
                     {/* Icon */}
                     <motion.div
@@ -313,14 +350,16 @@ const Contact = () => {
                     <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
                       {info.title}
                     </h3>
-                    
+
                     {info.link ? (
                       <a
                         href={info.link}
                         className="text-gray-400 hover:text-white transition-colors"
                       >
                         {info.details.map((detail, i) => (
-                          <span key={i} className="block text-sm">{detail}</span>
+                          <span key={i} className="block text-sm">
+                            {detail}
+                          </span>
                         ))}
                       </a>
                     ) : (
@@ -332,7 +371,9 @@ const Contact = () => {
                     )}
 
                     {/* Decorative corner */}
-                    <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${info.gradient} opacity-5 rounded-bl-[100px] rounded-tr-2xl`} />
+                    <div
+                      className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${info.gradient} opacity-5 rounded-bl-[100px] rounded-tr-2xl`}
+                    />
                   </div>
                 </motion.div>
               ))}
@@ -346,7 +387,7 @@ const Contact = () => {
               className="relative group"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-              
+
               <div className="relative h-72 md:h-80 rounded-3xl overflow-hidden border border-dark-600/50 group-hover:border-transparent transition-colors duration-500">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.1234567890123!2d77.4567890123456!3d28.567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDM0JzA0LjQiTiA3N8KwMjcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123"
@@ -358,18 +399,25 @@ const Contact = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 />
-                
+
                 {/* Map overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent pointer-events-none" />
-                
+
                 {/* Location pin animation */}
                 <motion.div
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full"
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <div className="relative">
-                    <MapPin className="w-10 h-10 text-primary-500 drop-shadow-lg" fill="#ed7410" />
+                    <MapPin
+                      className="w-10 h-10 text-primary-500 drop-shadow-lg"
+                      fill="#ed7410"
+                    />
                     <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-black/30 rounded-full blur-sm" />
                   </div>
                 </motion.div>
@@ -387,8 +435,12 @@ const Contact = () => {
                         <MapPin className="w-5 h-5 text-primary-400" />
                       </div>
                       <div>
-                        <p className="text-white font-semibold text-sm">Visit Our Office</p>
-                        <p className="text-gray-400 text-xs">Noida, Uttar Pradesh</p>
+                        <p className="text-white font-semibold text-sm">
+                          Visit Our Office
+                        </p>
+                        <p className="text-gray-400 text-xs">
+                          Noida, Uttar Pradesh
+                        </p>
                       </div>
                     </div>
                     <motion.a
@@ -418,8 +470,8 @@ const Contact = () => {
           >
             {/* Form glow effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-primary-500/20 via-purple-500/20 to-secondary-500/20 rounded-[2rem] blur-xl opacity-50" />
-            
-            <div 
+
+            <div
               className="relative p-8 md:p-10 rounded-[2rem] bg-dark-800/90 backdrop-blur-xl border border-dark-600/50 overflow-hidden"
               style={{
                 background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(237, 116, 16, 0.06), transparent 40%)`,
@@ -439,14 +491,22 @@ const Contact = () => {
                   >
                     <motion.div
                       animate={{ y: [0, -2, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     >
                       <MessageSquare className="w-6 h-6 text-white" />
                     </motion.div>
                   </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">Send us a Message</h3>
-                    <p className="text-gray-400 text-sm">We'll get back to you within 24 hours</p>
+                    <h3 className="text-2xl font-bold text-white">
+                      Send us a Message
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                      We'll get back to you within 24 hours
+                    </p>
                   </div>
                 </div>
               </div>
@@ -462,7 +522,11 @@ const Contact = () => {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        delay: 0.1,
+                      }}
                       className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center mb-6"
                     >
                       <CheckCircle className="w-12 h-12 text-white" />
@@ -497,7 +561,8 @@ const Contact = () => {
                         <motion.label
                           htmlFor="name"
                           animate={{
-                            color: focusedField === "name" ? "#ed7410" : "#9ca3af",
+                            color:
+                              focusedField === "name" ? "#ed7410" : "#9ca3af",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -517,12 +582,13 @@ const Contact = () => {
                           placeholder="John Doe"
                         />
                       </div>
-                      
+
                       <div className="relative">
                         <motion.label
                           htmlFor="email"
                           animate={{
-                            color: focusedField === "email" ? "#ed7410" : "#9ca3af",
+                            color:
+                              focusedField === "email" ? "#ed7410" : "#9ca3af",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -550,7 +616,8 @@ const Contact = () => {
                         <motion.label
                           htmlFor="phone"
                           animate={{
-                            color: focusedField === "phone" ? "#ed7410" : "#9ca3af",
+                            color:
+                              focusedField === "phone" ? "#ed7410" : "#9ca3af",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -569,12 +636,15 @@ const Contact = () => {
                           placeholder="+91 98765 43210"
                         />
                       </div>
-                      
+
                       <div className="relative">
                         <motion.label
                           htmlFor="service"
                           animate={{
-                            color: focusedField === "service" ? "#ed7410" : "#9ca3af",
+                            color:
+                              focusedField === "service"
+                                ? "#ed7410"
+                                : "#9ca3af",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -592,15 +662,28 @@ const Contact = () => {
                         >
                           <option value="">Select a service</option>
                           {services.map((service, i) => (
-                            <option key={i} value={service.toLowerCase().replace(/\s+/g, "-")}>
+                            <option
+                              key={i}
+                              value={service.toLowerCase().replace(/\s+/g, "-")}
+                            >
                               {service}
                             </option>
                           ))}
                         </motion.select>
                         {/* Custom dropdown arrow */}
                         <div className="absolute right-4 top-[42px] pointer-events-none">
-                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <svg
+                            className="w-5 h-5 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </div>
                       </div>
@@ -611,7 +694,8 @@ const Contact = () => {
                       <motion.label
                         htmlFor="message"
                         animate={{
-                          color: focusedField === "message" ? "#ed7410" : "#9ca3af",
+                          color:
+                            focusedField === "message" ? "#ed7410" : "#9ca3af",
                         }}
                         className="block text-sm font-semibold mb-2 transition-colors"
                       >
@@ -636,16 +720,17 @@ const Contact = () => {
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      whileHover={{ scale: isSubmitting ? 1 : 1.02, boxShadow: "0 20px 40px -15px rgba(237, 116, 16, 0.4)" }}
+                      whileHover={{
+                        scale: isSubmitting ? 1 : 1.02,
+                        boxShadow: "0 20px 40px -15px rgba(237, 116, 16, 0.4)",
+                      }}
                       whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                       className="relative w-full group overflow-hidden"
                     >
                       {/* Button background animation */}
                       <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-primary-600 to-orange-500 rounded-xl" />
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-orange-500 via-primary-500 to-primary-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      />
-                      
+                      <motion.div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-primary-500 to-primary-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                       {/* Shine effect */}
                       <motion.div
                         className="absolute inset-0 opacity-0 group-hover:opacity-100"
@@ -675,7 +760,9 @@ const Contact = () => {
                     {/* Privacy note */}
                     <p className="text-center text-gray-500 text-sm">
                       By submitting, you agree to our{" "}
-                      <a href="#" className="text-primary-400 hover:underline">Privacy Policy</a>
+                      <a href="#" className="text-primary-400 hover:underline">
+                        Privacy Policy
+                      </a>
                     </p>
                   </motion.form>
                 )}

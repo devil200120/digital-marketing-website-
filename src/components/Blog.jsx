@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, ArrowUpRight, User } from "lucide-react";
+import config from "../config";
 
-const blogPosts = [
+const defaultBlogPosts = [
   {
     id: 1,
     title: "Finding The Right SEO Agency In Noida: A Complete Guide",
@@ -76,6 +77,16 @@ const blogPosts = [
     color: "from-indigo-500 to-blue-500",
   },
 ];
+
+// Color mapping for categories
+const categoryColors = {
+  SEO: "from-blue-500 to-cyan-500",
+  "Social Media": "from-pink-500 to-rose-500",
+  "Digital Marketing": "from-primary-500 to-orange-500",
+  Business: "from-green-500 to-emerald-500",
+  Design: "from-purple-500 to-violet-500",
+  Marketing: "from-indigo-500 to-blue-500",
+};
 
 const BlogCard = ({ post, index }) => {
   const cardRef = useRef(null);
@@ -159,6 +170,37 @@ const BlogCard = ({ post, index }) => {
 const Blog = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [blogPosts, setBlogPosts] = useState(defaultBlogPosts);
+
+  // Fetch blog posts from API
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/blog`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Map API data to match expected format
+            const mappedPosts = data.map((post, index) => ({
+              id: post._id || index + 1,
+              title: post.title,
+              excerpt: post.excerpt || post.content?.substring(0, 150) + '...',
+              image: post.image || defaultBlogPosts[index % defaultBlogPosts.length].image,
+              category: post.category || 'Marketing',
+              author: post.author || 'Nihkarsh Team',
+              date: post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Dec 15, 2024',
+              readTime: post.readTime || '5 min read',
+              color: categoryColors[post.category] || 'from-primary-500 to-orange-500',
+            }));
+            setBlogPosts(mappedPosts);
+          }
+        }
+      } catch (error) {
+        console.log('Using default blog posts data');
+      }
+    };
+    fetchBlogPosts();
+  }, []);
 
   return (
     <section id="blog" className="relative py-24 md:py-32 overflow-hidden">

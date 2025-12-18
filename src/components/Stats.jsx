@@ -1,31 +1,40 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { TrendingUp, Target, Zap, Heart } from "lucide-react";
+import config from "../config";
 
-const stats = [
+// Icon mapping for dynamic stats
+const iconMap = {
+  TrendingUp: TrendingUp,
+  Target: Target,
+  Zap: Zap,
+  Heart: Heart,
+};
+
+const defaultStats = [
   {
-    icon: TrendingUp,
+    icon: "TrendingUp",
     value: 85,
     suffix: "%",
     label: "Website Traffic Growth",
     color: "from-green-500 to-emerald-500",
   },
   {
-    icon: Target,
+    icon: "Target",
     value: 92,
     suffix: "%",
     label: "SEO Optimization Completed",
     color: "from-blue-500 to-cyan-500",
   },
   {
-    icon: Zap,
+    icon: "Zap",
     value: 70,
     suffix: "%",
     label: "Conversion Rate Boost",
     color: "from-primary-500 to-orange-500",
   },
   {
-    icon: Heart,
+    icon: "Heart",
     value: 78,
     suffix: "%",
     label: "Social Media Engagement",
@@ -67,6 +76,46 @@ const AnimatedCounter = ({ value, suffix, isInView }) => {
 const Stats = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [stats, setStats] = useState(defaultStats);
+  const [sectionData, setSectionData] = useState({
+    badge: "Our Impact",
+    heading: {
+      line1: "Digital Marketing Agency for",
+      line2: "Success Journey"
+    },
+    description: "Based in Noida (Delhi NCR), we are the top digital marketing firm prepared to grow your company both domestically and internationally. Having worked in the same field for more than three years, we started from scratch and created more than fifty brands."
+  });
+
+  // Fetch stats from API
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/stats/public`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            // Update section data
+            if (data.badge) setSectionData(prev => ({ ...prev, badge: data.badge }));
+            if (data.heading) setSectionData(prev => ({ ...prev, heading: data.heading }));
+            if (data.description) setSectionData(prev => ({ ...prev, description: data.description }));
+            
+            // Update stats if provided
+            if (data.stats && data.stats.length > 0) {
+              const mappedStats = data.stats.map((stat, index) => ({
+                ...stat,
+                icon: stat.icon || defaultStats[index % defaultStats.length]?.icon || 'TrendingUp',
+                color: stat.color || defaultStats[index % defaultStats.length]?.color || 'from-green-500 to-emerald-500',
+              }));
+              setStats(mappedStats);
+            }
+          }
+        }
+      } catch (error) {
+        console.log('Using default stats data');
+      }
+    };
+    fetchStats();
+  }, []);
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -91,7 +140,7 @@ const Stats = () => {
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
             <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-              Our Impact
+              {sectionData.badge}
             </span>
           </motion.div>
 
@@ -101,9 +150,9 @@ const Stats = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
           >
-            <span className="text-white">Digital Marketing Agency for</span>
+            <span className="text-white">{sectionData.heading?.line1 || "Digital Marketing Agency for"}</span>
             <br />
-            <span className="gradient-text">Success Journey</span>
+            <span className="gradient-text">{sectionData.heading?.line2 || "Success Journey"}</span>
           </motion.h2>
 
           <motion.p
@@ -112,16 +161,15 @@ const Stats = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-gray-400 max-w-3xl mx-auto"
           >
-            Based in Noida (Delhi NCR), we are the top digital marketing firm
-            prepared to grow your company both domestically and internationally.
-            Having worked in the same field for more than three years, we
-            started from scratch and created more than fifty brands.
+            {sectionData.description}
           </motion.p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((stat, index) => (
+          {stats.map((stat, index) => {
+            const IconComponent = iconMap[stat.icon] || TrendingUp;
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -132,20 +180,20 @@ const Stats = () => {
               <div className="relative h-full p-8 rounded-3xl bg-dark-800/50 border border-dark-600/50 hover:border-primary-500/30 transition-all duration-500 overflow-hidden">
                 {/* Background gradient on hover */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                  className={`absolute inset-0 bg-gradient-to-br ${stat.color || 'from-green-500 to-emerald-500'} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                 />
 
                 {/* Icon */}
                 <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color || 'from-green-500 to-emerald-500'} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <stat.icon className="w-7 h-7 text-white" />
+                  <IconComponent className="w-7 h-7 text-white" />
                 </div>
 
                 {/* Value */}
                 <div className="mb-2">
                   <span
-                    className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                    className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${stat.color || 'from-green-500 to-emerald-500'} bg-clip-text text-transparent`}
                   >
                     <AnimatedCounter
                       value={stat.value}
@@ -168,12 +216,12 @@ const Stats = () => {
                       delay: 0.5 + index * 0.1,
                       ease: "easeOut",
                     }}
-                    className={`h-full bg-gradient-to-r ${stat.color} rounded-full`}
+                    className={`h-full bg-gradient-to-r ${stat.color || 'from-green-500 to-emerald-500'} rounded-full`}
                   />
                 </div>
               </div>
             </motion.div>
-          ))}
+          )})}
         </div>
       </div>
     </section>

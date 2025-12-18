@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
@@ -9,10 +9,40 @@ import {
   Globe,
 } from "lucide-react";
 import gsap from "gsap";
+import config from "../config";
+
+// Icon mapping for dynamic features
+const iconMap = {
+  TrendingUp: TrendingUp,
+  Users: Users,
+  Globe: Globe,
+};
 
 const Hero = () => {
   const containerRef = useRef(null);
   const textRef = useRef(null);
+  
+  // Dynamic data state
+  const [heroData, setHeroData] = useState({
+    badge: "#1 Digital Marketing Agency in Noida",
+    heading: {
+      line1: "Unlock Your",
+      line2: "Brand's Potential"
+    },
+    subtitle: "Innovative digital marketing strategies that transform businesses. From SEO to Social Media, we deliver measurable results.",
+    primaryButton: { text: "Get Free Consultation", link: "#contact" },
+    secondaryButton: { text: "Explore Services", link: "#services" },
+    heroImage: "/images/header-home4.webp",
+    features: [
+      { icon: "TrendingUp", text: "Growth Focused" },
+      { icon: "Users", text: "50+ Brands" },
+      { icon: "Globe", text: "Global Reach" },
+    ],
+    stats: [
+      { value: "85%", label: "Traffic Growth" },
+      { value: "50+", label: "Happy Clients" }
+    ]
+  });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -22,6 +52,30 @@ const Hero = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
+  // Fetch hero data from API
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const response = await fetch(`${config.apiUrl}/hero/public`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            setHeroData(prev => ({
+              ...prev,
+              ...data,
+              heading: data.heading || prev.heading,
+              features: data.features?.length ? data.features : prev.features,
+              stats: data.stats?.length ? data.stats : prev.stats,
+            }));
+          }
+        }
+      } catch (error) {
+        console.log('Using default hero data');
+      }
+    };
+    fetchHeroData();
+  }, []);
 
   useEffect(() => {
     if (textRef.current) {
@@ -39,13 +93,13 @@ const Hero = () => {
         }
       );
     }
-  }, []);
+  }, [heroData]);
 
-  const features = [
-    { icon: TrendingUp, text: "Growth Focused" },
-    { icon: Users, text: "50+ Brands" },
-    { icon: Globe, text: "Global Reach" },
-  ];
+  // Map features with icons
+  const features = heroData.features.map(f => ({
+    icon: iconMap[f.icon] || TrendingUp,
+    text: f.text
+  }));
 
   return (
     <section
@@ -110,7 +164,7 @@ const Hero = () => {
             >
               <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary-400" />
               <span className="text-xs md:text-sm font-medium text-gray-300">
-                #1 Digital Marketing Agency in Noida
+                {heroData.badge}
               </span>
             </motion.div>
 
@@ -121,28 +175,25 @@ const Hero = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight"
               >
                 <span className="block text-white">
-                  {"Unlock Your".split("").map((char, i) => (
+                  {(heroData.heading?.line1 || "Unlock Your").split("").map((char, i) => (
                     <span key={i} className="char inline-block">
                       {char === " " ? "\u00A0" : char}
                     </span>
                   ))}
                 </span>
                 <span className="block gradient-text mt-1 md:mt-2">
-                  <span className="inline-block whitespace-nowrap">
-                    {"Brand's".split("").map((char, i) => (
-                      <span key={i} className="char inline-block">
-                        {char}
-                      </span>
-                    ))}
-                  </span>
-                  <span className="char inline-block">&nbsp;</span>
-                  <span className="inline-block whitespace-nowrap">
-                    {"Potential".split("").map((char, i) => (
-                      <span key={`p-${i}`} className="char inline-block">
-                        {char}
-                      </span>
-                    ))}
-                  </span>
+                  {(heroData.heading?.line2 || "Brand's Potential").split(" ").map((word, wordIndex) => (
+                    <span key={wordIndex} className="inline-block whitespace-nowrap">
+                      {word.split("").map((char, i) => (
+                        <span key={`${wordIndex}-${i}`} className="char inline-block">
+                          {char}
+                        </span>
+                      ))}
+                      {wordIndex < (heroData.heading?.line2 || "Brand's Potential").split(" ").length - 1 && (
+                        <span className="char inline-block">&nbsp;</span>
+                      )}
+                    </span>
+                  ))}
                 </span>
               </motion.h1>
             </div>
@@ -154,8 +205,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 px-2 md:px-0"
             >
-              Innovative digital marketing strategies that transform businesses.
-              From SEO to Social Media, we deliver measurable results.
+              {heroData.subtitle}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -166,7 +216,7 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start mb-8 md:mb-12 px-4 sm:px-0"
             >
               <motion.a
-                href="#contact"
+                href={heroData.primaryButton?.link || "#contact"}
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0 0 40px rgba(237, 116, 16, 0.4)",
@@ -174,18 +224,18 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm md:text-base font-semibold rounded-full transition-all duration-300"
               >
-                Get Free Consultation
+                {heroData.primaryButton?.text || "Get Free Consultation"}
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
 
               <motion.a
-                href="#services"
+                href={heroData.secondaryButton?.link || "#services"}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 glass text-white text-sm md:text-base font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
               >
                 <Play className="w-4 h-4 md:w-5 md:h-5 text-primary-400" />
-                Explore Services
+                {heroData.secondaryButton?.text || "Explore Services"}
               </motion.a>
             </motion.div>
 
@@ -205,7 +255,9 @@ const Hero = () => {
                   className="flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-dark-700/50 border border-dark-600"
                 >
                   <feature.icon className="w-3 h-3 md:w-4 md:h-4 text-primary-400" />
-                  <span className="text-xs md:text-sm text-gray-300">{feature.text}</span>
+                  <span className="text-xs md:text-sm text-gray-300">
+                    {feature.text}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
@@ -231,7 +283,7 @@ const Hero = () => {
               >
                 <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary-500/10">
                   <img
-                    src="/images/header-home4.webp"
+                    src={heroData.heroImage || "/images/header-home4.webp"}
                     alt="Digital Marketing"
                     className="w-full h-auto object-cover"
                   />
@@ -260,8 +312,12 @@ const Hero = () => {
                       <TrendingUp className="w-4 h-4 md:w-6 md:h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-lg md:text-2xl font-bold text-white">85%</p>
-                      <p className="text-xs md:text-sm text-gray-400">Traffic Growth</p>
+                      <p className="text-lg md:text-2xl font-bold text-white">
+                        {heroData.stats?.[0]?.value || "85%"}
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-400">
+                        {heroData.stats?.[0]?.label || "Traffic Growth"}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -287,8 +343,12 @@ const Hero = () => {
                       <Users className="w-4 h-4 md:w-6 md:h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-lg md:text-2xl font-bold text-white">50+</p>
-                      <p className="text-xs md:text-sm text-gray-400">Happy Clients</p>
+                      <p className="text-lg md:text-2xl font-bold text-white">
+                        {heroData.stats?.[1]?.value || "50+"}
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-400">
+                        {heroData.stats?.[1]?.label || "Happy Clients"}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -316,7 +376,9 @@ const Hero = () => {
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-xs md:text-sm text-gray-500">Scroll to explore</span>
+          <span className="text-xs md:text-sm text-gray-500">
+            Scroll to explore
+          </span>
           <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-gray-600 flex justify-center pt-2">
             <motion.div
               animate={{ y: [0, 10, 0] }}
