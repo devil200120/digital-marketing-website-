@@ -372,7 +372,7 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(`${config.apiUrl}/services`);
+        const response = await fetch(`${config.apiUrl}/services/public`);
         if (response.ok) {
           const data = await response.json();
           if (data && data.length > 0) {

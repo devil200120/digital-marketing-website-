@@ -9,7 +9,8 @@ export default function Stats() {
   const [form, setForm] = useState({
     value: "",
     label: "",
-    suffix: "+",
+    suffix: "%",
+    icon: "TrendingUp",
     order: 0,
   });
 
@@ -29,7 +30,7 @@ export default function Stats() {
   };
 
   const resetForm = () => {
-    setForm({ value: "", label: "", suffix: "+", order: 0 });
+    setForm({ value: "", label: "", suffix: "%", icon: "TrendingUp", order: 0 });
     setEditingId(null);
   };
 
@@ -55,7 +56,8 @@ export default function Stats() {
     setForm({
       value: stat.value,
       label: stat.label,
-      suffix: stat.suffix || "+",
+      suffix: stat.suffix || "%",
+      icon: stat.icon || "TrendingUp",
       order: stat.order || 0,
     });
   };
@@ -95,7 +97,7 @@ export default function Stats() {
         </h3>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">
                 Value
@@ -122,6 +124,26 @@ export default function Stats() {
                 className="w-full rounded-xl bg-slate-800/50 border border-slate-700 px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
                 required
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                Icon
+              </label>
+              <select
+                value={form.icon}
+                onChange={(e) => setForm({ ...form, icon: e.target.value })}
+                className="w-full rounded-xl bg-slate-800/50 border border-slate-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+              >
+                <option value="TrendingUp">Trending Up</option>
+                <option value="Users">Users</option>
+                <option value="Award">Award</option>
+                <option value="Target">Target</option>
+                <option value="Zap">Zap</option>
+                <option value="Star">Star</option>
+                <option value="Heart">Heart</option>
+                <option value="CheckCircle">Check Circle</option>
+              </select>
             </div>
 
             <div>

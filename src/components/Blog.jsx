@@ -176,12 +176,12 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch(`${config.apiUrl}/blog`);
+        const response = await fetch(`${config.apiUrl}/blog/public`);
         if (response.ok) {
           const data = await response.json();
-          if (data && data.length > 0) {
+          if (data && data.blogs && data.blogs.length > 0) {
             // Map API data to match expected format
-            const mappedPosts = data.map((post, index) => ({
+            const mappedPosts = data.blogs.map((post, index) => ({
               id: post._id || index + 1,
               title: post.title,
               excerpt: post.excerpt || post.content?.substring(0, 150) + '...',
