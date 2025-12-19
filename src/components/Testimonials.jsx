@@ -76,13 +76,13 @@ const Testimonials = () => {
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/50 to-white" />
         <div className="absolute inset-0 dots-pattern opacity-20" />
       </div>
 
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-[150px]" />
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary-500/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-secondary-500/10 rounded-full blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -91,10 +91,10 @@ const Testimonials = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-slate-200 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+            <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
               Real Testimonials
             </span>
           </motion.div>
@@ -105,7 +105,7 @@ const Testimonials = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
           >
-            <span className="text-white">What They Say About</span>
+            <span className="text-slate-800">What They Say About</span>
             <br />
             <span className="gradient-text">Our Company?</span>
           </motion.h2>
@@ -124,7 +124,7 @@ const Testimonials = () => {
                 transition={{ duration: 0.5 }}
                 className="relative"
               >
-                <div className="relative p-8 md:p-12 rounded-3xl testimonial-card border border-dark-600/50 overflow-hidden">
+                <div className="relative p-8 md:p-12 rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden">
                   {/* Quote icon */}
                   <div className="absolute top-8 right-8 opacity-10">
                     <Quote className="w-24 h-24 text-primary-500" />
@@ -143,7 +143,7 @@ const Testimonials = () => {
                   </div>
 
                   {/* Testimonial text */}
-                  <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 relative z-10">
+                  <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 relative z-10">
                     "{testimonials[currentIndex].text}"
                   </p>
 
@@ -157,10 +157,10 @@ const Testimonials = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-white">
+                      <h4 className="text-lg font-bold text-slate-800">
                         {testimonials[currentIndex].name}
                       </h4>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-slate-500">
                         {testimonials[currentIndex].role}
                       </p>
                     </div>
@@ -176,7 +176,7 @@ const Testimonials = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+              className="w-12 h-12 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
@@ -190,7 +190,7 @@ const Testimonials = () => {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentIndex
                       ? "bg-primary-500 w-8"
-                      : "bg-dark-600 hover:bg-dark-500"
+                      : "bg-slate-300 hover:bg-slate-400"
                   }`}
                 />
               ))}
@@ -200,7 +200,7 @@ const Testimonials = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+              className="w-12 h-12 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </motion.button>
@@ -220,10 +220,10 @@ const Testimonials = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-              className={`p-6 rounded-2xl testimonial-card border border-dark-600/50 cursor-pointer transition-all duration-300 ${
+              className={`p-6 rounded-2xl bg-white border shadow-lg cursor-pointer transition-all duration-300 ${
                 index === currentIndex
-                  ? "border-primary-500/50 scale-105"
-                  : "hover:border-primary-500/30"
+                  ? "border-primary-500/50 scale-105 shadow-xl"
+                  : "border-slate-200 hover:border-primary-300 hover:shadow-xl"
               }`}
               onClick={() => setCurrentIndex(index)}
             >
@@ -235,7 +235,7 @@ const Testimonials = () => {
                   />
                 ))}
               </div>
-              <p className="text-sm text-gray-400 line-clamp-3 mb-4">
+              <p className="text-sm text-slate-600 line-clamp-3 mb-4">
                 "{testimonial.text}"
               </p>
               <div className="flex items-center gap-3">
@@ -247,10 +247,10 @@ const Testimonials = () => {
                   />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">
+                  <h4 className="text-sm font-semibold text-slate-800">
                     {testimonial.name}
                   </h4>
-                  <p className="text-xs text-gray-500">{testimonial.role}</p>
+                  <p className="text-xs text-slate-500">{testimonial.role}</p>
                 </div>
               </div>
             </motion.div>

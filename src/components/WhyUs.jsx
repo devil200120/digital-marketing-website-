@@ -15,7 +15,7 @@ const reasons = [
     title: "Trusted Expertise",
     description:
       "Over 3 years of experience delivering exceptional digital marketing solutions for businesses worldwide.",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary-500 to-indigo-500",
   },
   {
     icon: Zap,
@@ -36,7 +36,7 @@ const reasons = [
     title: "Dedicated Team",
     description:
       "Our team of skilled professionals works closely with you to understand and achieve your goals.",
-    color: "from-purple-500 to-violet-500",
+    color: "from-indigo-500 to-violet-500",
   },
   {
     icon: Award,
@@ -50,7 +50,7 @@ const reasons = [
     title: "Client-Centric",
     description:
       "Your success is our priority. We work transparently to meet and exceed your expectations.",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-secondary-500 to-teal-500",
   },
 ];
 
@@ -59,11 +59,11 @@ const WhyUs = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="why-us" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="why-us" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-500/5 rounded-full blur-[150px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-500/10 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,10 +77,10 @@ const WhyUs = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-slate-200 mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-              <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
                 Why Nihkarsh Technology
               </span>
             </motion.div>
@@ -91,7 +91,7 @@ const WhyUs = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
             >
-              <span className="text-white">Why Choose Us for Your</span>
+              <span className="text-slate-800">Why Choose Us for Your</span>
               <br />
               <span className="gradient-text">Digital Success Journey?</span>
             </motion.h2>
@@ -100,7 +100,7 @@ const WhyUs = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-400 text-lg leading-relaxed mb-8"
+              className="text-slate-600 text-lg leading-relaxed mb-8"
             >
               Utilize NIHKARSH TECHNOLOGY to explore the digital realm. We
               specialize in a wide range of digital marketing services - from
@@ -113,14 +113,14 @@ const WhyUs = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative rounded-3xl overflow-hidden"
+              className="relative rounded-3xl overflow-hidden shadow-2xl"
             >
               <img
                 src="/images/image1-home4.webp"
                 alt="Why Choose Us"
                 className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
 
               {/* Floating stats */}
               <div className="absolute bottom-6 left-6 right-6 flex justify-between gap-4">
@@ -128,19 +128,19 @@ const WhyUs = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="glass px-4 py-3 rounded-xl"
+                  className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg"
                 >
-                  <p className="text-2xl font-bold text-white">50+</p>
-                  <p className="text-xs text-gray-400">Brands Created</p>
+                  <p className="text-2xl font-bold text-slate-800">50+</p>
+                  <p className="text-xs text-slate-500">Brands Created</p>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="glass px-4 py-3 rounded-xl"
+                  className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg"
                 >
-                  <p className="text-2xl font-bold text-white">100%</p>
-                  <p className="text-xs text-gray-400">Client Satisfaction</p>
+                  <p className="text-2xl font-bold text-slate-800">100%</p>
+                  <p className="text-xs text-slate-500">Client Satisfaction</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -156,7 +156,7 @@ const WhyUs = () => {
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 className="group"
               >
-                <div className="relative h-full p-6 rounded-2xl bg-dark-800/50 border border-dark-600/50 hover:border-primary-500/30 transition-all duration-500 overflow-hidden">
+                <div className="relative h-full p-6 rounded-2xl bg-white border border-slate-200 shadow-lg hover:shadow-xl hover:border-primary-300 transition-all duration-500 overflow-hidden">
                   {/* Background gradient on hover */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${reason.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -170,10 +170,10 @@ const WhyUs = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary-500 transition-colors">
                     {reason.title}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {reason.description}
                   </p>
                 </div>

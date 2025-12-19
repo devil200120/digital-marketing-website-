@@ -43,14 +43,14 @@ const contactInfo = [
     title: "Email Us",
     details: ["info@nishkarsh.solutions"],
     link: "mailto:info@nishkarsh.solutions",
-    gradient: "from-blue-500 to-cyan-600",
+    gradient: "from-primary-500 to-indigo-600",
     shadow: "shadow-blue-500/20",
   },
   {
     icon: Clock,
     title: "Working Hours",
     details: ["Mon - Sat: 10:00 AM - 7:00 PM", "Sunday: Closed"],
-    gradient: "from-purple-500 to-violet-600",
+    gradient: "from-indigo-500 to-violet-600",
     shadow: "shadow-purple-500/20",
   },
 ];
@@ -166,26 +166,26 @@ const Contact = () => {
   }));
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="contact" className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
 
         {/* Animated mesh gradient */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-[120px] animate-pulse" />
           <div
-            className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full blur-[120px] animate-pulse"
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/10 rounded-full blur-[120px] animate-pulse"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] animate-pulse"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[150px] animate-pulse"
             style={{ animationDelay: "2s" }}
           />
         </div>
 
         {/* Grid pattern */}
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="absolute inset-0 grid-pattern opacity-30" />
 
         {/* Floating particles */}
         {particles.map((particle) => (
@@ -215,12 +215,12 @@ const Contact = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={sectionRef} className="text-center mb-20">
+        <div ref={sectionRef} className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, type: "spring" }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass border border-primary-500/20 mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass border border-primary-200 mb-6"
           >
             <motion.div
               animate={{
@@ -229,9 +229,9 @@ const Contact = () => {
               }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Sparkles className="w-4 h-4 text-primary-400" />
+              <Sparkles className="w-4 h-4 text-primary-500" />
             </motion.div>
-            <span className="text-sm font-semibold text-primary-400 uppercase tracking-wider">
+            <span className="text-sm font-semibold text-primary-600 uppercase tracking-wider">
               Get In Touch
             </span>
           </motion.div>
@@ -242,7 +242,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-8"
           >
-            <span className="text-white">Let's Create</span>
+            <span className="text-slate-800">Let's Create</span>
             <br />
             <span className="relative">
               <span className="gradient-text">Something Amazing</span>
@@ -268,8 +268,8 @@ const Contact = () => {
                     x2="100%"
                     y2="0%"
                   >
-                    <stop offset="0%" stopColor="#ed7410" />
-                    <stop offset="100%" stopColor="#0ca5eb" />
+                    <stop offset="0%" stopColor="#6366f1" />
+                    <stop offset="100%" stopColor="#14b8a6" />
                   </linearGradient>
                 </defs>
               </motion.svg>
@@ -280,7 +280,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
           >
             Ready to transform your digital presence? Our team of experts is
             here to help you achieve your goals. Let's start the conversation!
@@ -300,10 +300,10 @@ const Contact = () => {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-dark-800/80 border border-dark-600/50 backdrop-blur-sm"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm backdrop-blur-sm"
               >
-                <feature.icon className="w-4 h-4 text-primary-400" />
-                <span className="text-sm font-medium text-gray-300">
+                <feature.icon className="w-4 h-4 text-primary-500" />
+                <span className="text-sm font-medium text-slate-600">
                   {feature.text}
                 </span>
               </motion.div>
@@ -333,10 +333,10 @@ const Contact = () => {
                 >
                   {/* Glow effect */}
                   <div
-                    className={`absolute -inset-0.5 bg-gradient-to-r ${info.gradient} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                    className={`absolute -inset-0.5 bg-gradient-to-r ${info.gradient} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
                   />
 
-                  <div className="relative p-6 rounded-2xl bg-dark-800/80 backdrop-blur-sm border border-dark-600/50 group-hover:border-transparent transition-all duration-500 h-full">
+                  <div className="relative p-6 rounded-2xl bg-white backdrop-blur-sm border border-slate-200 group-hover:border-transparent transition-all duration-500 h-full shadow-sm">
                     {/* Icon */}
                     <motion.div
                       whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
@@ -347,14 +347,14 @@ const Contact = () => {
                     </motion.div>
 
                     {/* Content */}
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">
+                    <h3 className="text-lg font-bold text-slate-800 mb-2 group-hover:text-primary-600 transition-colors">
                       {info.title}
                     </h3>
 
                     {info.link ? (
                       <a
                         href={info.link}
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="text-slate-500 hover:text-slate-700 transition-colors"
                       >
                         {info.details.map((detail, i) => (
                           <span key={i} className="block text-sm">
@@ -364,7 +364,7 @@ const Contact = () => {
                       </a>
                     ) : (
                       info.details.map((detail, i) => (
-                        <p key={i} className="text-gray-400 text-sm">
+                        <p key={i} className="text-slate-500 text-sm">
                           {detail}
                         </p>
                       ))
@@ -469,17 +469,17 @@ const Contact = () => {
             className="relative"
           >
             {/* Form glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary-500/20 via-purple-500/20 to-secondary-500/20 rounded-[2rem] blur-xl opacity-50" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary-500/10 via-purple-500/10 to-secondary-500/10 rounded-[2rem] blur-xl opacity-50" />
 
             <div
-              className="relative p-8 md:p-10 rounded-[2rem] bg-dark-800/90 backdrop-blur-xl border border-dark-600/50 overflow-hidden"
+              className="relative p-8 md:p-10 rounded-[2rem] bg-white backdrop-blur-xl border border-slate-200 overflow-hidden shadow-xl"
               style={{
-                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(237, 116, 16, 0.06), transparent 40%)`,
+                background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(99, 102, 241, 0.04), transparent 40%)`,
               }}
             >
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-500/10 to-transparent rounded-bl-full" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary-500/10 to-transparent rounded-tr-full" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-500/5 to-transparent rounded-bl-full" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary-500/5 to-transparent rounded-tr-full" />
 
               {/* Form header */}
               <div className="relative mb-8">
@@ -501,10 +501,10 @@ const Contact = () => {
                     </motion.div>
                   </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-slate-800">
                       Send us a Message
                     </h3>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-slate-500 text-sm">
                       We'll get back to you within 24 hours
                     </p>
                   </div>
@@ -562,7 +562,7 @@ const Contact = () => {
                           htmlFor="name"
                           animate={{
                             color:
-                              focusedField === "name" ? "#ed7410" : "#9ca3af",
+                              focusedField === "name" ? "#6366f1" : "#64748b",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -578,7 +578,7 @@ const Contact = () => {
                           onBlur={() => setFocusedField(null)}
                           required
                           whileFocus={{ scale: 1.01 }}
-                          className="w-full px-5 py-4 rounded-xl bg-dark-700/50 border-2 border-dark-600 text-white placeholder-gray-500 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
+                          className="w-full px-5 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 placeholder-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
                           placeholder="John Doe"
                         />
                       </div>
@@ -588,7 +588,7 @@ const Contact = () => {
                           htmlFor="email"
                           animate={{
                             color:
-                              focusedField === "email" ? "#ed7410" : "#9ca3af",
+                              focusedField === "email" ? "#6366f1" : "#64748b",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -604,7 +604,7 @@ const Contact = () => {
                           onBlur={() => setFocusedField(null)}
                           required
                           whileFocus={{ scale: 1.01 }}
-                          className="w-full px-5 py-4 rounded-xl bg-dark-700/50 border-2 border-dark-600 text-white placeholder-gray-500 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
+                          className="w-full px-5 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 placeholder-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -617,7 +617,7 @@ const Contact = () => {
                           htmlFor="phone"
                           animate={{
                             color:
-                              focusedField === "phone" ? "#ed7410" : "#9ca3af",
+                              focusedField === "phone" ? "#6366f1" : "#64748b",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -632,7 +632,7 @@ const Contact = () => {
                           onFocus={() => setFocusedField("phone")}
                           onBlur={() => setFocusedField(null)}
                           whileFocus={{ scale: 1.01 }}
-                          className="w-full px-5 py-4 rounded-xl bg-dark-700/50 border-2 border-dark-600 text-white placeholder-gray-500 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
+                          className="w-full px-5 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 placeholder-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none"
                           placeholder="+91 98765 43210"
                         />
                       </div>
@@ -643,8 +643,8 @@ const Contact = () => {
                           animate={{
                             color:
                               focusedField === "service"
-                                ? "#ed7410"
-                                : "#9ca3af",
+                                ? "#6366f1"
+                                : "#64748b",
                           }}
                           className="block text-sm font-semibold mb-2 transition-colors"
                         >
@@ -658,7 +658,7 @@ const Contact = () => {
                           onFocus={() => setFocusedField("service")}
                           onBlur={() => setFocusedField(null)}
                           whileFocus={{ scale: 1.01 }}
-                          className="w-full px-5 py-4 rounded-xl bg-dark-700/50 border-2 border-dark-600 text-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none appearance-none cursor-pointer"
+                          className="w-full px-5 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none appearance-none cursor-pointer"
                         >
                           <option value="">Select a service</option>
                           {services.map((service, i) => (
@@ -673,7 +673,7 @@ const Contact = () => {
                         {/* Custom dropdown arrow */}
                         <div className="absolute right-4 top-[42px] pointer-events-none">
                           <svg
-                            className="w-5 h-5 text-gray-400"
+                            className="w-5 h-5 text-slate-400"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -695,7 +695,7 @@ const Contact = () => {
                         htmlFor="message"
                         animate={{
                           color:
-                            focusedField === "message" ? "#ed7410" : "#9ca3af",
+                            focusedField === "message" ? "#6366f1" : "#64748b",
                         }}
                         className="block text-sm font-semibold mb-2 transition-colors"
                       >
@@ -711,7 +711,7 @@ const Contact = () => {
                         required
                         rows={5}
                         whileFocus={{ scale: 1.01 }}
-                        className="w-full px-5 py-4 rounded-xl bg-dark-700/50 border-2 border-dark-600 text-white placeholder-gray-500 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none resize-none"
+                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 placeholder-slate-400 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 outline-none resize-none"
                         placeholder="Tell us about your project, goals, and how we can help..."
                       />
                     </div>
@@ -722,14 +722,14 @@ const Contact = () => {
                       disabled={isSubmitting}
                       whileHover={{
                         scale: isSubmitting ? 1 : 1.02,
-                        boxShadow: "0 20px 40px -15px rgba(237, 116, 16, 0.4)",
+                        boxShadow: "0 20px 40px -15px rgba(99, 102, 241, 0.4)",
                       }}
                       whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                       className="relative w-full group overflow-hidden"
                     >
                       {/* Button background animation */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-primary-600 to-orange-500 rounded-xl" />
-                      <motion.div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-primary-500 to-primary-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-primary-600 to-secondary-500 rounded-xl" />
+                      <motion.div className="absolute inset-0 bg-gradient-to-r from-secondary-500 via-primary-500 to-primary-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Shine effect */}
                       <motion.div
@@ -758,9 +758,9 @@ const Contact = () => {
                     </motion.button>
 
                     {/* Privacy note */}
-                    <p className="text-center text-gray-500 text-sm">
+                    <p className="text-center text-slate-500 text-sm">
                       By submitting, you agree to our{" "}
-                      <a href="#" className="text-primary-400 hover:underline">
+                      <a href="#" className="text-primary-500 hover:underline">
                         Privacy Policy
                       </a>
                     </p>

@@ -14,7 +14,7 @@ const defaultBlogPosts = [
     author: "Nihkarsh Team",
     date: "Dec 15, 2024",
     readTime: "5 min read",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary-500 to-indigo-500",
   },
   {
     id: 2,
@@ -62,7 +62,7 @@ const defaultBlogPosts = [
     author: "Nihkarsh Team",
     date: "Nov 20, 2024",
     readTime: "4 min read",
-    color: "from-purple-500 to-violet-500",
+    color: "from-indigo-500 to-violet-500",
   },
   {
     id: 6,
@@ -74,18 +74,18 @@ const defaultBlogPosts = [
     author: "Nihkarsh Team",
     date: "Nov 15, 2024",
     readTime: "5 min read",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-secondary-500 to-teal-500",
   },
 ];
 
 // Color mapping for categories
 const categoryColors = {
-  SEO: "from-blue-500 to-cyan-500",
+  SEO: "from-primary-500 to-indigo-500",
   "Social Media": "from-pink-500 to-rose-500",
   "Digital Marketing": "from-primary-500 to-orange-500",
   Business: "from-green-500 to-emerald-500",
-  Design: "from-purple-500 to-violet-500",
-  Marketing: "from-indigo-500 to-blue-500",
+  Design: "from-indigo-500 to-violet-500",
+  Marketing: "from-secondary-500 to-teal-500",
 };
 
 const BlogCard = ({ post, index }) => {
@@ -100,7 +100,7 @@ const BlogCard = ({ post, index }) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group cursor-pointer"
     >
-      <div className="relative h-full bg-dark-800/50 rounded-3xl overflow-hidden border border-dark-600/50 hover:border-primary-500/30 transition-all duration-500">
+      <div className="relative h-full bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-xl hover:border-primary-300 transition-all duration-500">
         {/* Image */}
         <div className="relative h-52 overflow-hidden">
           <img
@@ -108,7 +108,7 @@ const BlogCard = ({ post, index }) => {
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
 
           {/* Category badge */}
           <div className="absolute top-4 left-4">
@@ -123,7 +123,7 @@ const BlogCard = ({ post, index }) => {
         {/* Content */}
         <div className="p-6">
           {/* Meta info */}
-          <div className="flex items-center gap-4 mb-3 text-sm text-gray-500">
+          <div className="flex items-center gap-4 mb-3 text-sm text-slate-500">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>{post.date}</span>
@@ -135,12 +135,12 @@ const BlogCard = ({ post, index }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-primary-400 transition-colors">
+          <h3 className="text-lg font-bold text-slate-800 mb-3 line-clamp-2 group-hover:text-primary-500 transition-colors">
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-2">
             {post.excerpt}
           </p>
 
@@ -150,11 +150,11 @@ const BlogCard = ({ post, index }) => {
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center">
                 <User className="w-4 h-4 text-white" />
               </div>
-              <span className="text-sm text-gray-400">{post.author}</span>
+              <span className="text-sm text-slate-500">{post.author}</span>
             </div>
 
             <motion.span
-              className="inline-flex items-center gap-1 text-sm font-semibold text-primary-400"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-primary-500"
               whileHover={{ x: 5 }}
             >
               Read More
@@ -206,13 +206,13 @@ const Blog = () => {
     <section id="blog" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
         <div className="absolute inset-0 grid-pattern opacity-20" />
       </div>
 
       {/* Gradient orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-[150px]" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/10 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/10 rounded-full blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -221,10 +221,10 @@ const Blog = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-slate-200 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+            <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
               Our Blog
             </span>
           </motion.div>
@@ -235,7 +235,7 @@ const Blog = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6"
           >
-            <span className="text-white">Latest Insights &</span>
+            <span className="text-slate-800">Latest Insights &</span>
             <br />
             <span className="gradient-text">Industry News</span>
           </motion.h2>
@@ -244,7 +244,7 @@ const Blog = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 max-w-2xl mx-auto"
           >
             Stay updated with the latest trends, tips, and strategies in digital
             marketing to help grow your business.

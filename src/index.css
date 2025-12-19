@@ -10,29 +10,32 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0b;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ed7410, #f19132);
+  background: linear-gradient(180deg, #6366f1, #818cf8);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #f19132, #ed7410);
+  background: linear-gradient(180deg, #4f46e5, #6366f1);
 }
 
 /* Base styles */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   font-family: "Inter", system-ui, sans-serif;
-  background-color: #0a0a0b;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #1e293b;
   overflow-x: hidden;
   margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
 /* Smooth scroll snap */
@@ -44,22 +47,24 @@ body {
   scroll-snap-align: start;
 }
 
-/* Glassmorphism */
+/* Glassmorphism - Light Theme */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .glass-dark {
-  background: rgba(10, 10, 11, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #ed7410 0%, #f6b96d 50%, #ed7410 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #14b8a6 50%, #6366f1 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -68,7 +73,7 @@ body {
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #0ca5eb 0%, #36bffa 50%, #0ca5eb 100%);
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4f46e5 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -78,7 +83,7 @@ body {
 
 /* Animated gradient background */
 .animated-gradient {
-  background: linear-gradient(-45deg, #0a0a0b, #1a1a1d, #121214, #0a0a0b);
+  background: linear-gradient(-45deg, #f8fafc, #eef2ff, #f0fdfa, #f8fafc);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
@@ -97,15 +102,15 @@ body {
 
 /* Glow effects */
 .glow-orange {
-  box-shadow: 0 0 40px rgba(237, 116, 16, 0.3);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
 }
 
 .glow-blue {
-  box-shadow: 0 0 40px rgba(12, 165, 235, 0.3);
+  box-shadow: 0 0 40px rgba(20, 184, 166, 0.2);
 }
 
 .text-glow-orange {
-  text-shadow: 0 0 30px rgba(237, 116, 16, 0.5);
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
 }
 
 /* Animated border */
@@ -120,7 +125,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(90deg, #ed7410, #0ca5eb, #ed7410);
+  background: linear-gradient(90deg, #6366f1, #14b8a6, #6366f1);
   background-size: 200% auto;
   animation: gradient 3s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -151,10 +156,10 @@ body {
 @keyframes pulseGlow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(237, 116, 16, 0.4);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(237, 116, 16, 0.8);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
   }
 }
 
@@ -197,7 +202,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.015;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
@@ -211,7 +216,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(237, 116, 16, 0.1) 0%,
+    rgba(99, 102, 241, 0.06) 0%,
     transparent 70%
   );
   transform: translate(-50%, -50%);
@@ -283,7 +288,7 @@ body {
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(237, 116, 16, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 0%,
     transparent 50%
   );
   animation: spotlight 10s linear infinite;
@@ -302,7 +307,7 @@ body {
 .hero-circle {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(237, 116, 16, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.15);
   animation: expandCircle 4s ease-in-out infinite;
 }
 
@@ -310,11 +315,11 @@ body {
   0%,
   100% {
     transform: scale(1);
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
     transform: scale(1.1);
-    opacity: 0.6;
+    opacity: 0.4;
   }
 }
 
@@ -322,7 +327,7 @@ body {
 .loading-screen {
   position: fixed;
   inset: 0;
-  background: #0a0a0b;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,7 +337,7 @@ body {
 .loading-bar {
   width: 200px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(59, 130, 246, 0.1);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -342,7 +347,7 @@ body {
   display: block;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, #ed7410, #f6b96d);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
   animation: loading 1s ease-in-out infinite;
 }
 
@@ -375,8 +380,8 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #ed7410;
-  box-shadow: 0 0 0 3px rgba(237, 116, 16, 0.1);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* Button ripple effect */
@@ -409,25 +414,26 @@ textarea:focus {
 .testimonial-card {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(248, 250, 252, 0.95) 100%
   );
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 /* Grid pattern background */
 .grid-pattern {
   background-image: linear-gradient(
-      rgba(237, 116, 16, 0.03) 1px,
+      rgba(59, 130, 246, 0.03) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(237, 116, 16, 0.03) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 /* Dots pattern */
 .dots-pattern {
   background-image: radial-gradient(
-    rgba(237, 116, 16, 0.1) 1px,
+    rgba(59, 130, 246, 0.08) 1px,
     transparent 1px
   );
   background-size: 20px 20px;

@@ -63,7 +63,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3 glass-dark shadow-2xl" : "py-5 bg-transparent"
+        scrolled ? "py-3 bg-white/95 backdrop-blur-lg shadow-lg border-b border-slate-100" : "py-5 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,16 +78,8 @@ const Navbar = () => {
             <img
               src="/images/Nihkarsh-Technology-1536x768.webp"
               alt="Nihkarsh Technology"
-              className="h-14 sm:h-16 md:h-20 object-contain -mr-6 sm:-mr-8 md:-mr-10"
+              className="h-14 sm:h-16 md:h-20 object-contain"
             />
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-lg md:text-xl font-bold text-white tracking-tight leading-tight">
-                NIHKARSH TECHNOLOGY
-              </span>
-              <span className="text-[8px] sm:text-[10px] md:text-xs text-gray-400 tracking-widest uppercase">
-                Private Limited
-              </span>
-            </div>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -101,15 +93,15 @@ const Navbar = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
                   activeSection === link.href.substring(1)
-                    ? "text-primary-400"
-                    : "text-gray-300 hover:text-white"
+                    ? "text-primary-600"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 {link.name}
                 {activeSection === link.href.substring(1) && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute inset-0 bg-primary-500/10 rounded-lg -z-10"
+                    className="absolute inset-0 bg-primary-50 rounded-lg -z-10"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -133,7 +125,7 @@ const Navbar = () => {
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="lg:hidden relative z-50 p-2 text-white"
+            className="lg:hidden relative z-50 p-2 text-slate-700"
             onClick={() => setIsOpen(!isOpen)}
           >
             <AnimatePresence mode="wait">
@@ -171,7 +163,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden glass-dark border-t border-white/5"
+            className="lg:hidden bg-white/95 backdrop-blur-lg border-t border-slate-100"
           >
             <div className="max-w-7xl mx-auto px-4 py-6 space-y-2">
               {navLinks.map((link, index) => (
@@ -183,8 +175,8 @@ const Navbar = () => {
                   transition={{ delay: index * 0.05 }}
                   className={`block w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 ${
                     activeSection === link.href.substring(1)
-                      ? "text-primary-400 bg-primary-500/10"
-                      : "text-gray-300 hover:text-white hover:bg-white/5"
+                      ? "text-primary-600 bg-primary-50"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   }`}
                 >
                   {link.name}

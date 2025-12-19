@@ -17,28 +17,28 @@ const defaultStats = [
     value: 85,
     suffix: "%",
     label: "Website Traffic Growth",
-    color: "from-green-500 to-emerald-500",
+    color: "from-secondary-500 to-teal-500",
   },
   {
     icon: "Target",
     value: 92,
     suffix: "%",
     label: "SEO Optimization Completed",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary-500 to-indigo-500",
   },
   {
     icon: "Zap",
     value: 70,
     suffix: "%",
     label: "Conversion Rate Boost",
-    color: "from-primary-500 to-orange-500",
+    color: "from-accent-500 to-amber-500",
   },
   {
     icon: "Heart",
     value: 78,
     suffix: "%",
     label: "Social Media Engagement",
-    color: "from-pink-500 to-rose-500",
+    color: "from-rose-500 to-pink-500",
   },
 ];
 
@@ -121,13 +121,13 @@ const Stats = () => {
     <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
       </div>
 
       {/* Animated gradient lines */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -136,10 +136,10 @@ const Stats = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-md border border-slate-200 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+            <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
               {sectionData.badge}
             </span>
           </motion.div>
@@ -150,7 +150,7 @@ const Stats = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
           >
-            <span className="text-white">{sectionData.heading?.line1 || "Digital Marketing Agency for"}</span>
+            <span className="text-slate-800">{sectionData.heading?.line1 || "Digital Marketing Agency for"}</span>
             <br />
             <span className="gradient-text">{sectionData.heading?.line2 || "Success Journey"}</span>
           </motion.h2>
@@ -159,7 +159,7 @@ const Stats = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-400 max-w-3xl mx-auto"
+            className="text-lg text-slate-600 max-w-3xl mx-auto"
           >
             {sectionData.description}
           </motion.p>
@@ -177,7 +177,7 @@ const Stats = () => {
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
               className="relative group"
             >
-              <div className="relative h-full p-8 rounded-3xl bg-dark-800/50 border border-dark-600/50 hover:border-primary-500/30 transition-all duration-500 overflow-hidden">
+              <div className="relative h-full p-8 rounded-3xl bg-white border border-slate-200 shadow-lg hover:shadow-xl hover:border-primary-300 transition-all duration-500 overflow-hidden">
                 {/* Background gradient on hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${stat.color || 'from-green-500 to-emerald-500'} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -204,10 +204,10 @@ const Stats = () => {
                 </div>
 
                 {/* Label */}
-                <p className="text-gray-400 font-medium">{stat.label}</p>
+                <p className="text-slate-600 font-medium">{stat.label}</p>
 
                 {/* Progress bar */}
-                <div className="mt-4 h-1.5 bg-dark-700 rounded-full overflow-hidden">
+                <div className="mt-4 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={isInView ? { width: `${stat.value}%` } : {}}

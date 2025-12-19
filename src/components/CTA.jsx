@@ -10,13 +10,13 @@ const CTA = () => {
     <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/20 via-dark-900 to-secondary-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-50/50 via-white to-secondary-50/50" />
         <div className="absolute inset-0 grid-pattern opacity-20" />
       </div>
 
       {/* Animated gradient orbs */}
       <motion.div
-        className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[150px]"
+        className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary-500/10 rounded-full blur-[150px]"
         animate={{
           x: [0, 30, 0],
           y: [0, -30, 0],
@@ -28,7 +28,7 @@ const CTA = () => {
         }}
       />
       <motion.div
-        className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-secondary-500/20 rounded-full blur-[150px]"
+        className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-secondary-500/10 rounded-full blur-[150px]"
         animate={{
           x: [0, -30, 0],
           y: [0, 30, 0],
@@ -46,17 +46,17 @@ const CTA = () => {
           className="relative p-8 md:p-16 rounded-3xl overflow-hidden"
         >
           {/* Card background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-dark-800/90 to-dark-900/90 backdrop-blur-xl" />
-          <div className="absolute inset-0 border border-primary-500/20 rounded-3xl" />
+          <div className="absolute inset-0 bg-white/95 backdrop-blur-xl shadow-2xl" />
+          <div className="absolute inset-0 border border-slate-200 rounded-3xl" />
 
           {/* Animated border */}
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
             <div
-              className="absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/50 to-primary-500/0 animate-[gradient_3s_ease_infinite]"
+              className="absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/30 to-primary-500/0 animate-[gradient_3s_ease_infinite]"
               style={{ height: "1px" }}
             />
             <div
-              className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-primary-500/0 via-primary-500/50 to-primary-500/0 animate-[gradient_3s_ease_infinite]"
+              className="absolute bottom-0 inset-x-0 bg-gradient-to-r from-primary-500/0 via-primary-500/30 to-primary-500/0 animate-[gradient_3s_ease_infinite]"
               style={{ height: "1px" }}
             />
           </div>
@@ -79,7 +79,7 @@ const CTA = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6"
             >
-              <span className="text-white">From Zero to</span>
+              <span className="text-slate-800">From Zero to</span>
               <br />
               <span className="gradient-text">Digital Hero</span>
             </motion.h2>
@@ -89,7 +89,7 @@ const CTA = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10"
+              className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10"
             >
               Transform your brand like never before! Let us help you unlock
               your full potential with innovative digital marketing strategies.
@@ -106,7 +106,7 @@ const CTA = () => {
                 href="#contact"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 0 50px rgba(237, 116, 16, 0.5)",
+                  boxShadow: "0 0 50px rgba(99, 102, 241, 0.4)",
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-full transition-all duration-300"
@@ -119,7 +119,7 @@ const CTA = () => {
                 href="tel:+919560948881"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 border border-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-200 transition-all duration-300"
               >
                 Call Now: +91 9560948881
               </motion.a>
@@ -130,21 +130,21 @@ const CTA = () => {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center justify-center gap-6 mt-12 pt-8 border-t border-dark-600/50"
+              className="flex flex-wrap items-center justify-center gap-6 mt-12 pt-8 border-t border-slate-200"
             >
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
                 Free Consultation
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
                 No Hidden Fees
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
                 24/7 Support
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
                 Guaranteed Results
               </div>

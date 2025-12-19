@@ -105,17 +105,18 @@ const Hero = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-20"
+      className="relative h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-indigo-50/30 to-slate-50/30"
+      style={{ paddingTop: '70px', maxHeight: '100vh' }}
     >
       {/* Background Elements */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       {/* Animated gradient orbs - smaller on mobile */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-primary-500/20 rounded-full blur-[80px] md:blur-[120px]"
+        className="absolute top-1/4 left-1/4 w-32 h-32 md:w-64 md:h-64 bg-primary-500/10 rounded-full blur-[60px] md:blur-[80px]"
         animate={{
-          x: [0, 50, 0],
-          y: [0, 30, 0],
+          x: [0, 30, 0],
+          y: [0, 20, 0],
         }}
         transition={{
           duration: 8,
@@ -124,10 +125,10 @@ const Hero = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-secondary-500/20 rounded-full blur-[80px] md:blur-[120px]"
+        className="absolute bottom-1/4 right-1/4 w-32 h-32 md:w-64 md:h-64 bg-secondary-500/10 rounded-full blur-[60px] md:blur-[80px]"
         animate={{
-          x: [0, -50, 0],
-          y: [0, -30, 0],
+          x: [0, -30, 0],
+          y: [0, -20, 0],
         }}
         transition={{
           duration: 10,
@@ -137,22 +138,22 @@ const Hero = () => {
       />
 
       {/* Decorative circles - hidden on mobile */}
-      <div className="hidden md:block hero-circle w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <div className="hidden md:block hero-circle w-[350px] h-[350px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       <div
-        className="hidden md:block hero-circle w-[700px] h-[700px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="hidden md:block hero-circle w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{ animationDelay: "1s" }}
       />
       <div
-        className="hidden md:block hero-circle w-[900px] h-[900px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="hidden md:block hero-circle w-[650px] h-[650px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{ animationDelay: "2s" }}
       />
 
       {/* Content */}
       <motion.div
         style={{ y, opacity, scale }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6 lg:py-8 w-full"
       >
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left order-2 lg:order-1">
             {/* Badge */}
@@ -160,21 +161,21 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full glass mb-6 md:mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full glass mb-3 md:mb-4"
             >
-              <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary-400" />
-              <span className="text-xs md:text-sm font-medium text-gray-300">
+              <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary-500" />
+              <span className="text-xs md:text-sm font-medium text-slate-600">
                 {heroData.badge}
               </span>
             </motion.div>
 
             {/* Main Heading */}
-            <div className="overflow-hidden mb-4 md:mb-6">
+            <div className="overflow-hidden mb-2 md:mb-4">
               <motion.h1
                 ref={textRef}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-display font-bold leading-tight"
               >
-                <span className="block text-white">
+                <span className="block text-slate-800">
                   {(heroData.heading?.line1 || "Unlock Your").split("").map((char, i) => (
                     <span key={i} className="char inline-block">
                       {char === " " ? "\u00A0" : char}
@@ -203,7 +204,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 px-2 md:px-0"
+              className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 mb-4 md:mb-5 max-w-lg mx-auto lg:mx-0 px-2 md:px-0"
             >
               {heroData.subtitle}
             </motion.p>
@@ -213,28 +214,28 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start mb-8 md:mb-12 px-4 sm:px-0"
+              className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center lg:justify-start mb-4 md:mb-6 px-4 sm:px-0"
             >
               <motion.a
                 href={heroData.primaryButton?.link || "#contact"}
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 0 40px rgba(237, 116, 16, 0.4)",
+                  boxShadow: "0 25px 50px -12px rgba(99, 102, 241, 0.4)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-sm md:text-base font-semibold rounded-full transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-xs md:text-sm font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary-600/25"
               >
                 {heroData.primaryButton?.text || "Get Free Consultation"}
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
               </motion.a>
 
               <motion.a
                 href={heroData.secondaryButton?.link || "#services"}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 glass text-white text-sm md:text-base font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-white border-2 border-slate-200 text-slate-700 text-xs md:text-sm font-semibold rounded-full hover:border-primary-600 hover:text-primary-700 transition-all duration-300 shadow-sm"
               >
-                <Play className="w-4 h-4 md:w-5 md:h-5 text-primary-400" />
+                <Play className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary-600" />
                 {heroData.secondaryButton?.text || "Explore Services"}
               </motion.a>
             </motion.div>
@@ -244,7 +245,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex flex-wrap gap-2 md:gap-4 justify-center lg:justify-start"
+              className="flex flex-wrap gap-2 md:gap-3 justify-center lg:justify-start"
             >
               {features.map((feature, index) => (
                 <motion.div
@@ -252,10 +253,10 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2 + index * 0.1 }}
-                  className="flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-dark-700/50 border border-dark-600"
+                  className="flex items-center gap-1 md:gap-1.5 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-white/80 border border-slate-200 shadow-sm"
                 >
-                  <feature.icon className="w-3 h-3 md:w-4 md:h-4 text-primary-400" />
-                  <span className="text-xs md:text-sm text-gray-300">
+                  <feature.icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary-500" />
+                  <span className="text-xs text-slate-600">
                     {feature.text}
                   </span>
                 </motion.div>
@@ -268,12 +269,12 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative order-1 lg:order-2"
+            className="relative order-1 lg:order-2 max-h-[50vh] lg:max-h-[60vh]"
           >
             <div className="relative">
               {/* Main image */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
+                animate={{ y: [0, -8, 0] }}
                 transition={{
                   duration: 5,
                   repeat: Infinity,
@@ -281,13 +282,13 @@ const Hero = () => {
                 }}
                 className="relative z-10"
               >
-                <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary-500/10">
+                <div className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-xl shadow-primary-500/10 border border-slate-200/50">
                   <img
                     src={heroData.heroImage || "/images/header-home4.webp"}
                     alt="Digital Marketing"
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto max-h-[45vh] lg:max-h-[55vh] object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent" />
                 </div>
               </motion.div>
 
@@ -296,7 +297,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5 }}
-                className="absolute -bottom-3 -left-2 md:-bottom-6 md:-left-6 z-20"
+                className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 z-20"
               >
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
@@ -305,17 +306,17 @@ const Hero = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="glass px-3 py-2 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-xl"
+                  className="bg-white px-2.5 py-1.5 md:px-4 md:py-3 rounded-lg md:rounded-xl shadow-xl border border-slate-100"
                 >
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-                      <TrendingUp className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                      <TrendingUp className="w-3.5 h-3.5 md:w-5 md:h-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-lg md:text-2xl font-bold text-white">
+                      <p className="text-base md:text-xl font-bold text-slate-800">
                         {heroData.stats?.[0]?.value || "85%"}
                       </p>
-                      <p className="text-xs md:text-sm text-gray-400">
+                      <p className="text-[10px] md:text-xs text-slate-500">
                         {heroData.stats?.[0]?.label || "Traffic Growth"}
                       </p>
                     </div>
@@ -327,7 +328,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.7 }}
-                className="absolute -top-3 -right-2 md:-top-6 md:-right-6 z-20"
+                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-20"
               >
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
@@ -336,17 +337,17 @@ const Hero = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="glass px-3 py-2 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-xl"
+                  className="bg-white px-2.5 py-1.5 md:px-4 md:py-3 rounded-lg md:rounded-xl shadow-xl border border-slate-100"
                 >
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-primary-500 to-orange-500 flex items-center justify-center">
-                      <Users className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary-600 to-secondary-500 flex items-center justify-center">
+                      <Users className="w-3.5 h-3.5 md:w-5 md:h-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-lg md:text-2xl font-bold text-white">
+                      <p className="text-base md:text-xl font-bold text-slate-800">
                         {heroData.stats?.[1]?.value || "50+"}
                       </p>
-                      <p className="text-xs md:text-sm text-gray-400">
+                      <p className="text-[10px] md:text-xs text-slate-500">
                         {heroData.stats?.[1]?.label || "Happy Clients"}
                       </p>
                     </div>
@@ -356,8 +357,8 @@ const Hero = () => {
 
               {/* Decorative elements - smaller on mobile */}
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
-                <div className="absolute top-0 right-0 w-36 h-36 md:w-72 md:h-72 bg-primary-500/30 rounded-full blur-[60px] md:blur-[100px]" />
-                <div className="absolute bottom-0 left-0 w-36 h-36 md:w-72 md:h-72 bg-secondary-500/30 rounded-full blur-[60px] md:blur-[100px]" />
+                <div className="absolute top-0 right-0 w-28 h-28 md:w-48 md:h-48 bg-primary-500/20 rounded-full blur-[40px] md:blur-[60px]" />
+                <div className="absolute bottom-0 left-0 w-28 h-28 md:w-48 md:h-48 bg-secondary-500/20 rounded-full blur-[40px] md:blur-[60px]" />
               </div>
             </div>
           </motion.div>
@@ -369,17 +370,17 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="hidden sm:block absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2"
+        className="hidden sm:block absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-xs md:text-sm text-gray-500">
+          <span className="text-xs md:text-sm text-slate-400">
             Scroll to explore
           </span>
-          <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-gray-600 flex justify-center pt-2">
+          <div className="w-5 h-8 md:w-6 md:h-10 rounded-full border-2 border-slate-300 flex justify-center pt-2">
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}

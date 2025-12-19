@@ -35,7 +35,7 @@ const defaultServices = [
     fullDescription:
       "We at our digital marketing organization are adamant that SEO is the foundation of every company's website. We promise you a thorough SEO strategy that is executed using ethical SEO tactics. Our comprehensive approach includes keyword research, on-page optimization, technical SEO, link building, and content strategy to ensure your website ranks higher and attracts quality organic traffic.",
     image: "/images/Finding-The-Right-Seo-Agency-In-Noida-1536x864.webp",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary-500 to-indigo-500",
     features: [
       "Comprehensive Keyword Research",
       "On-Page & Off-Page SEO",
@@ -98,7 +98,7 @@ const defaultServices = [
     fullDescription:
       "Our creative design team brings your brand vision to life with stunning visuals that capture attention and communicate your message effectively. From logos to marketing materials, we create designs that resonate with your target audience and strengthen your brand identity across all platforms.",
     image: "/images/Graphic-Designing-1536x864.webp",
-    color: "from-purple-500 to-violet-500",
+    color: "from-indigo-500 to-violet-500",
     features: [
       "Logo & Brand Identity",
       "Marketing Collaterals",
@@ -140,7 +140,7 @@ const defaultServices = [
     fullDescription:
       "We build custom websites that not only look stunning but also perform exceptionally. Our development team creates responsive, fast-loading, and SEO-optimized websites that provide excellent user experience and drive conversions. From simple landing pages to complex web applications, we deliver solutions that grow with your business.",
     image: "/images/Best-Digital-Marketing-Agency-in-Noida.webp",
-    color: "from-indigo-500 to-blue-500",
+    color: "from-secondary-500 to-teal-500",
     features: [
       "Custom Website Development",
       "E-commerce Solutions",
@@ -167,7 +167,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -175,13 +175,13 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-dark-800 rounded-3xl border border-dark-600/50 shadow-2xl"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl border border-slate-200 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-dark-700/80 backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-white hover:bg-dark-600 transition-all duration-300"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-all duration-300 shadow-sm"
             >
               <X className="w-5 h-5" />
             </button>
@@ -193,22 +193,22 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                 alt={service.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
 
               {/* Service number & icon */}
               <div className="absolute bottom-6 left-6 flex items-center gap-4">
                 <div
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} flex items-center justify-center shadow-lg`}
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-indigo-500'} flex items-center justify-center shadow-lg`}
                 >
                   <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <span
-                    className={`text-sm font-medium bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} bg-clip-text text-transparent`}
+                    className={`text-sm font-medium bg-gradient-to-r ${service.color || 'from-primary-500 to-indigo-500'} bg-clip-text text-transparent`}
                   >
                     Service {service.number}
                   </span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
                     {service.title}
                   </h2>
                 </div>
@@ -218,13 +218,13 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             {/* Content */}
             <div className="p-6 md:p-8">
               {/* Description */}
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              <p className="text-slate-600 text-lg leading-relaxed mb-8">
                 {service.fullDescription}
               </p>
 
               {/* Features */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                   <span
                     className={`w-8 h-1 rounded-full bg-gradient-to-r ${service.color}`}
                   />
@@ -237,25 +237,25 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-dark-700/50 border border-dark-600/50"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100"
                     >
                       <CheckCircle
                         className={`w-5 h-5 flex-shrink-0 text-transparent bg-gradient-to-r ${service.color} bg-clip-text`}
                         style={{
                           color: service.color.includes("blue")
-                            ? "#3b82f6"
+                            ? "#6366f1"
                             : service.color.includes("pink")
                             ? "#ec4899"
                             : service.color.includes("primary")
-                            ? "#ed7410"
+                            ? "#6366f1"
                             : service.color.includes("purple")
-                            ? "#8b5cf6"
+                            ? "#4f46e5"
                             : service.color.includes("green")
-                            ? "#22c55e"
+                            ? "#14b8a6"
                             : "#6366f1",
                         }}
                       />
-                      <span className="text-gray-300 text-sm">{feature}</span>
+                      <span className="text-slate-600 text-sm">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -278,7 +278,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                   onClick={onClose}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-dark-700 text-white font-semibold rounded-xl border border-dark-600 hover:border-primary-500/50 transition-all duration-300"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-200 hover:border-primary-500/50 transition-all duration-300"
                 >
                   Request Quote
                 </motion.a>
@@ -308,11 +308,11 @@ const ServiceCard = ({ service, index, onClick }) => {
       onClick={onClick}
     >
       <div className="service-card-3d h-full">
-        <div className="relative h-full bg-dark-800/50 rounded-3xl overflow-hidden border border-dark-600/50 hover:border-primary-500/30 transition-all duration-500">
+        <div className="relative h-full bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-primary-300 transition-all duration-500 shadow-sm hover:shadow-xl">
           {/* Service number */}
           <div className="absolute top-6 right-6 z-20">
             <span
-              className={`text-6xl font-bold bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} bg-clip-text text-transparent opacity-20 group-hover:opacity-40 transition-opacity`}
+              className={`text-6xl font-bold bg-gradient-to-r ${service.color || 'from-primary-500 to-indigo-500'} bg-clip-text text-transparent opacity-10 group-hover:opacity-20 transition-opacity`}
             >
               {service.number}
             </span>
@@ -325,11 +325,11 @@ const ServiceCard = ({ service, index, onClick }) => {
               alt={service.title}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-800 via-dark-800/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/50 to-transparent" />
 
             {/* Icon */}
             <div
-              className={`absolute bottom-4 left-6 w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-orange-500'} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}
+              className={`absolute bottom-4 left-6 w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color || 'from-primary-500 to-indigo-500'} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}
             >
               <IconComponent className="w-7 h-7 text-white" />
             </div>
@@ -337,15 +337,15 @@ const ServiceCard = ({ service, index, onClick }) => {
 
           {/* Content */}
           <div className="p-6 pt-4">
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">
+            <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-primary-600 transition-colors">
               {service.title}
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+            <p className="text-slate-500 text-sm leading-relaxed mb-4">
               {service.description}
             </p>
 
             {/* Learn more link */}
-            <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary-400 group/link">
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary-500 group/link">
               View Details
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </div>
@@ -380,7 +380,7 @@ const Services = () => {
             const mappedServices = data.map((service, index) => ({
               ...service,
               number: String(index + 1).padStart(2, '0'),
-              color: service.color || defaultServices[index % defaultServices.length]?.color || 'from-primary-500 to-orange-500',
+              color: service.color || defaultServices[index % defaultServices.length]?.color || 'from-primary-500 to-indigo-500',
               icon: service.icon || defaultServices[index % defaultServices.length]?.icon || 'Search',
               features: service.features || defaultServices[index % defaultServices.length]?.features || [],
               fullDescription: service.fullDescription || service.description,
@@ -406,7 +406,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="services" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
       {/* Service Detail Modal */}
       <ServiceModal
         service={selectedService}
@@ -418,8 +418,8 @@ const Services = () => {
       <div className="absolute inset-0 dots-pattern opacity-30" />
 
       {/* Gradient orbs */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary-500/10 rounded-full blur-[150px]" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[150px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -431,7 +431,7 @@ const Services = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+            <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
               Our Services
             </span>
           </motion.div>
@@ -442,7 +442,7 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6"
           >
-            <span className="text-white">Our Expertise,</span>
+            <span className="text-slate-800">Our Expertise,</span>
             <br />
             <span className="gradient-text">Your Success</span>
           </motion.h2>
@@ -451,7 +451,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 max-w-2xl mx-auto"
           >
             Comprehensive digital marketing solutions tailored to elevate your
             brand and drive measurable results.

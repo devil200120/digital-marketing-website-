@@ -35,21 +35,35 @@ function MainWebsite() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
+      // Ensure scroll position is at top after loading
+      window.scrollTo(0, 0);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Prevent scroll during loading
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [loading]);
 
   if (loading) {
     return <LoadingScreen />;
   }
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen">
       <CursorGlow />
       <FloatingContact />
       <div className="noise-overlay" />
       <Navbar />
-      <main>
+      <main className="flex flex-col">
         <Hero />
         <Services />
         <About />

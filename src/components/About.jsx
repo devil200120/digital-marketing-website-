@@ -85,7 +85,7 @@ const About = () => {
   }));
 
   return (
-    <section id="about" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="about" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary-500/5 rounded-full blur-[150px] -translate-y-1/2" />
@@ -123,7 +123,7 @@ const About = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute -bottom-10 -right-10 w-64 h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-dark-900 z-20"
+                className="absolute -bottom-10 -right-10 w-64 h-64 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20"
               >
                 <img
                   src={aboutData.image2 || "/images/about-image2-1.webp"}
@@ -139,9 +139,9 @@ const About = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="absolute top-6 -left-6 z-30"
               >
-                <div className="glass px-6 py-4 rounded-2xl shadow-xl">
+                <div className="bg-white px-6 py-4 rounded-2xl shadow-xl border border-slate-100">
                   <p className="text-4xl font-bold gradient-text">{aboutData.experienceYears || "3+"}</p>
-                  <p className="text-sm text-gray-400">Years Experience</p>
+                  <p className="text-sm text-slate-500">Years Experience</p>
                 </div>
               </motion.div>
 
@@ -162,7 +162,7 @@ const About = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-              <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
+              <span className="text-sm font-medium text-slate-600 uppercase tracking-wider">
                 {aboutData.badge || "About Us"}
               </span>
             </motion.div>
@@ -173,7 +173,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-6"
             >
-              <span className="text-white">{aboutData.heading?.line1 || "Your Worldwide Partner"}</span>
+              <span className="text-slate-800">{aboutData.heading?.line1 || "Your Worldwide Partner"}</span>
               <br />
               <span className="gradient-text">{aboutData.heading?.line2 || "in Digital Success"}</span>
             </motion.h2>
@@ -182,7 +182,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-400 text-lg leading-relaxed mb-8"
+              className="text-slate-600 text-lg leading-relaxed mb-8"
             >
               {aboutData.description}
             </motion.p>
@@ -200,12 +200,12 @@ const About = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-dark-800/50 border border-dark-600/50"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-100 shadow-sm"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary-500/20 to-primary-600/20 flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-primary-400" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary-500/10 to-primary-600/10 flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-primary-500" />
                   </div>
-                  <span className="text-sm font-medium text-gray-300">
+                  <span className="text-sm font-medium text-slate-700">
                     {item.text}
                   </span>
                 </motion.div>
@@ -228,7 +228,7 @@ const About = () => {
                   className="flex items-center gap-2"
                 >
                   <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-300">{feature}</span>
+                  <span className="text-sm text-slate-600">{feature}</span>
                 </motion.div>
               ))}
             </motion.div>

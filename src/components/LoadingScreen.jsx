@@ -58,7 +58,7 @@ const LoadingScreen = () => {
         speedX: (Math.random() - 0.5) * 2,
         speedY: (Math.random() - 0.5) * 2,
         opacity: Math.random() * 0.5 + 0.2,
-        color: Math.random() > 0.5 ? "#ed7410" : "#0ca5eb",
+        color: Math.random() > 0.5 ? "#6366f1" : "#14b8a6",
       });
     }
 
@@ -141,7 +141,7 @@ const LoadingScreen = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark-900 overflow-hidden"
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white overflow-hidden"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, scale: 1.1 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -155,7 +155,7 @@ const LoadingScreen = () => {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(237,116,16,0.15) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)",
             }}
             animate={{
               scale: [1, 1.2, 1],
@@ -171,7 +171,7 @@ const LoadingScreen = () => {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(12,165,235,0.1) 0%, transparent 70%)",
+                "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)",
             }}
             animate={{
               scale: [1.2, 1, 1.2],
@@ -212,8 +212,8 @@ const LoadingScreen = () => {
             style={{
               background:
                 i % 2 === 0
-                  ? "linear-gradient(135deg, #ed7410, #f59e0b)"
-                  : "linear-gradient(135deg, #0ca5eb, #06b6d4)",
+                  ? "linear-gradient(135deg, #6366f1, #818cf8)"
+                  : "linear-gradient(135deg, #14b8a6, #2dd4bf)",
               left: `${20 + i * 12}%`,
               top: `${30 + (i % 3) * 20}%`,
             }}
@@ -250,7 +250,7 @@ const LoadingScreen = () => {
             <motion.div
               className="absolute inset-0 blur-2xl"
               style={{
-                background: "linear-gradient(135deg, #ed7410, #0ca5eb)",
+                background: "linear-gradient(135deg, #6366f1, #14b8a6)",
                 opacity: 0.3,
               }}
               animate={{
@@ -279,7 +279,7 @@ const LoadingScreen = () => {
                 variants={letterVariants}
                 initial="hidden"
                 animate="visible"
-                className="text-3xl md:text-5xl font-display font-bold bg-gradient-to-r from-primary-400 via-primary-500 to-orange-400 bg-clip-text text-transparent"
+                className="text-3xl md:text-5xl font-display font-bold bg-gradient-to-r from-primary-500 via-primary-600 to-secondary-500 bg-clip-text text-transparent"
               >
                 {letter}
               </motion.span>
@@ -296,7 +296,7 @@ const LoadingScreen = () => {
             {tagline.split("").map((letter, i) => (
               <motion.span
                 key={i}
-                className="text-lg md:text-2xl font-medium text-gray-400 tracking-[0.3em]"
+                className="text-lg md:text-2xl font-medium text-slate-500 tracking-[0.3em]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 + i * 0.03 }}
@@ -315,7 +315,7 @@ const LoadingScreen = () => {
                 cy="50%"
                 r="45%"
                 fill="none"
-                stroke="rgba(255,255,255,0.05)"
+                stroke="rgba(0,0,0,0.05)"
                 strokeWidth="4"
               />
               <motion.circle
@@ -328,7 +328,7 @@ const LoadingScreen = () => {
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 45}`}
                 strokeDashoffset={2 * Math.PI * 45 * (1 - progress / 100)}
-                style={{ filter: "drop-shadow(0 0 10px rgba(237,116,16,0.5))" }}
+                style={{ filter: "drop-shadow(0 0 10px rgba(59,130,246,0.5))" }}
               />
               <defs>
                 <linearGradient
@@ -338,9 +338,9 @@ const LoadingScreen = () => {
                   x2="100%"
                   y2="0%"
                 >
-                  <stop offset="0%" stopColor="#ed7410" />
-                  <stop offset="50%" stopColor="#f59e0b" />
-                  <stop offset="100%" stopColor="#0ca5eb" />
+                  <stop offset="0%" stopColor="#6366f1" />
+                  <stop offset="50%" stopColor="#14b8a6" />
+                  <stop offset="100%" stopColor="#14b8a6" />
                 </linearGradient>
               </defs>
             </svg>
@@ -392,7 +392,7 @@ const LoadingScreen = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="text-sm md:text-base text-gray-400 font-medium tracking-wider"
+              className="text-sm md:text-base text-slate-500 font-medium tracking-wider"
             >
               {loadingText}
             </motion.span>
@@ -420,7 +420,7 @@ const LoadingScreen = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="mt-6 text-xs md:text-sm text-gray-500 tracking-widest uppercase"
+            className="mt-6 text-xs md:text-sm text-slate-400 tracking-widest uppercase"
           >
             Digital Marketing Excellence
           </motion.p>
@@ -462,9 +462,9 @@ const LoadingScreen = () => {
                 x2="100%"
                 y2="0%"
               >
-                <stop offset="0%" stopColor="rgba(237,116,16,0.1)" />
-                <stop offset="50%" stopColor="rgba(12,165,235,0.1)" />
-                <stop offset="100%" stopColor="rgba(237,116,16,0.1)" />
+                <stop offset="0%" stopColor="rgba(99,102,241,0.1)" />
+                <stop offset="50%" stopColor="rgba(20,184,166,0.1)" />
+                <stop offset="100%" stopColor="rgba(99,102,241,0.1)" />
               </linearGradient>
             </defs>
           </svg>

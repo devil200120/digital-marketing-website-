@@ -55,10 +55,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-dark-900 pt-20 pb-8 overflow-hidden">
+    <footer className="relative bg-slate-900 pt-20 pb-8 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="absolute inset-0 grid-pattern opacity-5" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[150px]" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-[150px]" />
       </div>
@@ -120,7 +120,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-600 flex items-center justify-center text-gray-400 hover:text-primary-400 hover:border-primary-500/50 transition-all duration-300"
+                  className="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-primary-400 hover:border-primary-500/50 transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -150,7 +150,7 @@ const Footer = () => {
                 >
                   <a
                     href={link.href}
-                    className="text-gray-400 text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-2 group"
+                    className="text-slate-400 text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-500/50 group-hover:bg-primary-500 transition-colors" />
                     {link.name}
@@ -181,7 +181,7 @@ const Footer = () => {
                 >
                   <a
                     href={service.href}
-                    className="text-gray-400 text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-2 group"
+                    className="text-slate-400 text-sm hover:text-primary-400 transition-colors inline-flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary-500/50 group-hover:bg-primary-500 transition-colors" />
                     {service.name}
@@ -209,7 +209,7 @@ const Footer = () => {
                 className="flex items-start gap-3"
               >
                 <MapPin className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">
+                <span className="text-slate-400 text-sm">
                   SF 191, GAUR CITY CENTER, Sector 4, Gautam Buddha Nagar, Uttar
                   Pradesh - 201318
                 </span>
@@ -222,7 +222,7 @@ const Footer = () => {
               >
                 <a
                   href="mailto:info@nishkarsh.solutions"
-                  className="flex items-center gap-3 text-gray-400 text-sm hover:text-primary-400 transition-colors"
+                  className="flex items-center gap-3 text-slate-400 text-sm hover:text-primary-400 transition-colors"
                 >
                   <Mail className="w-5 h-5 text-primary-500 flex-shrink-0" />
                   info@nishkarsh.solutions
@@ -236,7 +236,7 @@ const Footer = () => {
               >
                 <a
                   href="tel:+919560948881"
-                  className="flex items-center gap-3 text-gray-400 text-sm hover:text-primary-400 transition-colors"
+                  className="flex items-center gap-3 text-slate-400 text-sm hover:text-primary-400 transition-colors"
                 >
                   <Phone className="w-5 h-5 text-primary-500 flex-shrink-0" />
                   +91 9560948881
@@ -247,14 +247,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-dark-700">
+        <div className="pt-8 border-t border-slate-700">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-gray-500 text-sm text-center md:text-left"
+              className="text-slate-500 text-sm text-center md:text-left"
             >
               © {new Date().getFullYear()} Nihkarsh Technology. All Rights
               Reserved.
@@ -271,7 +271,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-500 text-sm hover:text-primary-400 transition-colors"
+                  className="text-slate-500 text-sm hover:text-primary-400 transition-colors"
                 >
                   {link.name}
                 </a>

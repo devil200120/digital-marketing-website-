@@ -205,13 +205,13 @@ const FloatingContact = () => {
         {!isOpen && (
           <>
             <motion.div
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-primary-500"
               variants={pulseRingVariants}
               initial="initial"
               animate="animate"
             />
             <motion.div
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-primary-500"
               variants={pulseRingVariants}
               initial="initial"
               animate="animate"
@@ -226,8 +226,8 @@ const FloatingContact = () => {
           onClick={() => setIsOpen(!isOpen)}
           className={`relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-xl transition-all duration-300 ${
             isOpen
-              ? "bg-gradient-to-br from-purple-500 to-purple-700 shadow-purple-500/50"
-              : "bg-gradient-to-br from-purple-500 to-pink-500 shadow-pink-500/50"
+              ? "bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-indigo-500/50"
+              : "bg-gradient-to-br from-indigo-500 to-primary-500 shadow-primary-500/50"
           }`}
           variants={mainButtonVariants}
           animate={isOpen ? "open" : "closed"}
