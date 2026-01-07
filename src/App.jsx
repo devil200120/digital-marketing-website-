@@ -15,9 +15,6 @@ import LoadingScreen from "./components/LoadingScreen";
 import CursorGlow from "./components/CursorGlow";
 import FloatingContact from "./components/FloatingContact";
 
-// Brandinux App
-import BrandinuxApp from "./components/xyz";
-
 // Admin imports
 import Login from "./admin/auth/Login";
 import ProtectedRoute from "./admin/auth/ProtectedRoute";
@@ -97,9 +94,6 @@ function App() {
       <Routes>
         {/* Main Website */}
         <Route path="/" element={<MainWebsite />} />
-
-        {/* Brandinux App */}
-        <Route path="/brandinux" element={<BrandinuxApp />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<Login />} />
